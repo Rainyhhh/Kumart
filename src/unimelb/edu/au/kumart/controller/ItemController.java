@@ -32,9 +32,15 @@ public class ItemController {
 		//logger.info("sfwefwf");
 		if(itemService.newItem(item)) {
 			return new ModelAndView("/index");
-		}		
-		
+		}				
+		return null;		
+	}
+	@RequestMapping("getItem")
+	public ModelAndView getItem(){
+		ModelAndView mav = new ModelAndView("/display");
+		if(itemService.getItem()!= null){
+			return mav;
+		}
 		return null;
-		
 	}
 }

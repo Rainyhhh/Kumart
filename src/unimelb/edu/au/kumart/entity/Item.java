@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 
 /**
- * Modal: Item
+ * Model: Item
  * Including all the attributes of an item.
  */
 public class Item implements Serializable{
