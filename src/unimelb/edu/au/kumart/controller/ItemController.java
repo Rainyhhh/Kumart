@@ -1,5 +1,6 @@
 package unimelb.edu.au.kumart.controller;
 
+import java.util.*;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,9 @@ public class ItemController {
 	@RequestMapping("getItem")
 	public ModelAndView getItem(){
 		ModelAndView mav = new ModelAndView("/display");
-		if(itemService.getItem()!= null){
+		List<Item> list = itemService.getItem();
+		if(list!= null){
+			mav.addObject("items",list);
 			return mav;
 		}
 		return null;
