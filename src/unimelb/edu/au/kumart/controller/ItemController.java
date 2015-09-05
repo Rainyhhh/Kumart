@@ -23,7 +23,7 @@ public class ItemController {
 	
 	private static Logger logger = Logger.getLogger(ItemController.class.getName()); 
 	
-	@RequestMapping("index")
+	@RequestMapping(value = "index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/index");
 		return mav;
@@ -33,7 +33,7 @@ public class ItemController {
 	public ModelAndView newItem(Item item) {
 		//logger.info("sfwefwf");
 		if(itemService.newItem(item)) {
-			return new ModelAndView("/index");
+			return new ModelAndView("redirect:/getItem");
 		}				
 		return null;		
 	}
@@ -51,7 +51,7 @@ public class ItemController {
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(@RequestParam String id){
 		if(itemService.deleteItem(id)){
-			return getItem();
+			return new ModelAndView("redirect:/getItem");
 		}
 		return null;
 	}
@@ -71,7 +71,7 @@ public class ItemController {
 	public ModelAndView update(HttpServletRequest req, Item item) {
 		String id = req.getParameter("_id");
 		if(itemService.update(id, item)) {
-			return getItem();
+			return new ModelAndView("redirect:/getItem");
 		}				
 		return null;		
 	}
