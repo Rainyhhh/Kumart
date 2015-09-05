@@ -49,14 +49,8 @@ public class ItemMongo {
 		return false;
 	}
 	
-	public boolean updateItem(String id,Item item){
-		Item oldItem = getOneItem(id);
-		System.out.println(oldItem.getName());
-		oldItem.setName(item.getName());
-		oldItem.setDescription(item.getDescription());
-		oldItem.setPrice(item.getPrice());
-		oldItem.setNumber(item.getNumber());	
-		mongoTemplate.save(oldItem);
+	public boolean updateItem(Item item){	
+		mongoTemplate.save(item, ITEM_COLLECTION);
 		return true;
 	}
 	
