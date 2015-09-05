@@ -36,11 +36,37 @@ public class ItemMongo {
 	public List<Item> getItem(){	
 		List<Item> list = new ArrayList<Item>();	
 		list = this.mongoTemplate.findAll(Item.class, ITEM_COLLECTION);
-		for(Item i : list){
-			System.out.println(i.getName());
-		}
-		System.out.println(list.size());
 		return list;
+	}
 
+	
+	public boolean deleteItem(String id){	
+		Item item = getOneItem(id);
+		if(item!=null){
+		mongoTemplate.remove(item, ITEM_COLLECTION);
+		return true;
+		}
+		return false;
+	}
+	
+	public boolean updateItem(String id,Item item){
+		Item oldItem = getOneItem(id);
+		System.out.println(oldItem.getName());
+		oldItem.setName(item.getName());
+		oldItem.setDescription(item.getDescription());
+		oldItem.setPrice(item.getPrice());
+		oldItem.setNumber(item.getNumber());	
+		mongoTemplate.save(oldItem);
+		return true;
+	}
+	
+	public Item getOneItem(String id){
+		Criteria criteria = Criteria.where("_id").is(id);		
+		if(null!=criteria){
+	    Query query = new Query(criteria);
+		Item item = this.mongoTemplate.findOne(query, Item.class,ITEM_COLLECTION);
+		return item;
+		}
+		return null;
 	}
 }
