@@ -16,7 +16,8 @@ pageContext.setAttribute("description", item.getDescription());
 pageContext.setAttribute("number", item.getNumber());
 pageContext.setAttribute("price", item.getPrice());
 %>
-<form action="/Kumart/update" method="get">
+<form action="/Kumart/update" method="post">
+        <input type="hidden" name="_id" value="${_id}">
 		<div class="form-group">
 			<span class="required-field">Name:</span> 
 			<input type="text" name="name" class="form-control" value="${name}">
@@ -33,7 +34,7 @@ pageContext.setAttribute("price", item.getPrice());
 			<span class="required-field">Number:</span> 
 			<input type="text" name="number" class="form-control" value="${number}">
 		</div>
-		<a href="update?id=${_id}" type=submit >Submit</a>
+		<input type=submit value='submit' />
 	</form>
 </body>
 </html>

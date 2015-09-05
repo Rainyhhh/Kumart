@@ -30,8 +30,9 @@ public class ItemService {
 		return false;
 	}
 	
-	public boolean update(String id,Item item){
-		if(itemMongo.updateItem(id,item)){
+	public boolean update(String id, Item item){
+		item.set_id(id);
+		if(itemMongo.updateItem(item)) {
 			return true;
 		}
 		return false;

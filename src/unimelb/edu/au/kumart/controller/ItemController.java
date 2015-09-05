@@ -50,13 +50,8 @@ public class ItemController {
 	
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(@RequestParam String id){
-		ModelAndView mav = new ModelAndView("/display");
 		if(itemService.deleteItem(id)){
-			List<Item> list = itemService.getItem();
-			if(list!= null){
-				mav.addObject("items",list);
-				return mav;
-			}
+			return getItem();
 		}
 		return null;
 	}
@@ -72,11 +67,11 @@ public class ItemController {
 		return null;
 	}
 	
-	@RequestMapping(value ="/update",method=RequestMethod.GET)
-	public ModelAndView update(@RequestParam String id ,Item item) {
-		System.out.println(id);
-		if(itemService.update(id,item)) {
-			return new ModelAndView("/update");
+	@RequestMapping(value ="/update",method=RequestMethod.POST)
+	public ModelAndView update(HttpServletRequest req, Item item) {
+		String id = req.getParameter("_id");
+		if(itemService.update(id, item)) {
+			return getItem();
 		}				
 		return null;		
 	}
