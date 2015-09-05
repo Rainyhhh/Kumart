@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+.image-border {
+	border: 1px solid grey;
+}
+
+.small-box .small-box-footer{
+	background-color:#ECF0EF;
+}
