@@ -12,13 +12,17 @@
 <%
 List<Item> items =(List<Item>) request.getAttribute("items");
 %>
+
 <%
 for (Item item : items){
+	pageContext.setAttribute("_id", item.get_id());
 	pageContext.setAttribute("name", item.getName());
 	pageContext.setAttribute("price", item.getPrice());
 %>
 <div>${name}</div>
 <div>${price}</div>
+<a href="deleteItem?id=${_id}">Delete</a>
+<a href="prepareUpdate?id=${_id}">Up</a>
 <% 
 }
 %>

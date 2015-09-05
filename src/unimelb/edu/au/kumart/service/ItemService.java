@@ -22,5 +22,26 @@ public class ItemService {
 		List<Item> itemlist = itemMongo.getItem();
 		return itemlist;				
 	}
+	
+	public boolean deleteItem(String id){
+		if(itemMongo.deleteItem(id)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean update(String id,Item item){
+		if(itemMongo.updateItem(id,item)){
+			return true;
+		}
+		return false;
+	}
+	
+	public Item getOneItem(String id){
+		Item item = itemMongo.getOneItem(id);
+		if(item!=null){
+		return item;}
+		return null;
+	}
 
 }
