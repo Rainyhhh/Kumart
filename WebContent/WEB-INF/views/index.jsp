@@ -56,9 +56,9 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 							    </div>
 					    
 					     <div class="col-sm-6">
-								<a href="#"><i class="glyphicon glyphicon-pencil image_display_icon" aria-hidden="true"></i></a>
+								<a href="prepareUpdate?id=${_id}"><i class="glyphicon glyphicon-pencil image_display_icon" aria-hidden="true"></i></a>
 								<a
-									href="#"><i  class="glyphicon glyphicon-trash image_display_icon" aria-hidden="true"></i></a>
+									href="deleteItem?id=${_id}"><i  class="glyphicon glyphicon-trash image_display_icon" aria-hidden="true"></i></a>
 							</div>   	
 							   </div> 
 							   </div>					

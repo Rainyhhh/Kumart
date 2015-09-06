@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Update</title>
+<jsp:include page="navigator.jsp" />
 </head>
-<body>
+<body class="skin-yellow">
 <% 
 Item item = (Item)request.getAttribute("Item");
 pageContext.setAttribute("_id", item.get_id());
@@ -16,7 +17,23 @@ pageContext.setAttribute("description", item.getDescription());
 pageContext.setAttribute("number", item.getNumber());
 pageContext.setAttribute("price", item.getPrice());
 %>
-<form action="/Kumart/update" method="post">
+<div class="content-wrapper" style="margin-left: 0px;">
+<!-- Content Header (Page header) -->
+		<section class="content-header">
+		<h1>
+			Update Item
+		</h1>
+		</section>
+		<!-- Main content -->
+		<section class="content"> <!-- Small boxes (Stat box) -->
+		<div class="row">
+		<div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">	
+		<div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title text-center">Item Information</div>
+            </div>	
+            <div class="panel body">
+<form action="/Kumart/update" method="post" style="padding: 20px;">
         <input type="hidden" name="_id" value="${_id}">
 		<div class="form-group">
 			<span class="required-field">Name:</span> 
@@ -34,7 +51,12 @@ pageContext.setAttribute("price", item.getPrice());
 			<span class="required-field">Number:</span> 
 			<input type="text" name="number" class="form-control" value="${number}">
 		</div>
-		<input type=submit value='submit' />
+		<input type=submit class="btn btn-save" value='submit' />
 	</form>
+	</div>
+	</div>
+	</div>
+</section>
+</div>
 </body>
 </html>
