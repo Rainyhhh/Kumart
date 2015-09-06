@@ -5,6 +5,9 @@
 	border: 1px solid grey;
 }
 
+.content{
+	margin-top:20px;
+}
 .content-wrapper{
 	background-color: #fff;
 }

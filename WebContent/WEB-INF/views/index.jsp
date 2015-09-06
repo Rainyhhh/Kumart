@@ -34,11 +34,9 @@ List<Item> items =(List<Item>) request.getAttribute("items");
         </div>
       </form>  
     </div>
-			<div class="col-sm-offset-8">
-				<div class="pull-right">
+			<div class="col-sm-offset-9">
 					<a class="btn btn-info" data-toggle="modal"
 						data-target="#add_new_item">+ Add a new item</a>
-				</div>
 			</div>
 		</div>
 		</section>
