@@ -23,23 +23,18 @@ public class ItemController {
 	
 	private static Logger logger = Logger.getLogger(ItemController.class.getName()); 
 	
-	@RequestMapping(value = "index")
-	public ModelAndView index() {
-		ModelAndView mav = new ModelAndView("/index");
-		return mav;
-	}
 	
 	@RequestMapping(value ="/addItem",method=RequestMethod.POST)
 	public ModelAndView newItem(Item item) {
 		//logger.info("sfwefwf");
 		if(itemService.newItem(item)) {
-			return new ModelAndView("redirect:/getItem");
+			return new ModelAndView("redirect:/index");
 		}				
 		return null;		
 	}
-	@RequestMapping("getItem")
+	@RequestMapping("index")
 	public ModelAndView getItem(){
-		ModelAndView mav = new ModelAndView("/display");
+		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItem();
 		if(list!= null){
 			mav.addObject("items",list);
@@ -51,7 +46,7 @@ public class ItemController {
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(@RequestParam String id){
 		if(itemService.deleteItem(id)){
-			return new ModelAndView("redirect:/getItem");
+			return new ModelAndView("redirect:/index");
 		}
 		return null;
 	}
@@ -71,7 +66,7 @@ public class ItemController {
 	public ModelAndView update(HttpServletRequest req, Item item) {
 		String id = req.getParameter("_id");
 		if(itemService.update(id, item)) {
-			return new ModelAndView("redirect:/getItem");
+			return new ModelAndView("redirect:/index");
 		}				
 		return null;		
 	}

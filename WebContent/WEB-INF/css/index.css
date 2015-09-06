@@ -5,6 +5,18 @@
 	border: 1px solid grey;
 }
 
+.content-wrapper{
+	background-color: #fff;
+}
 .small-box .small-box-footer{
 	background-color:#ECF0EF;
+}
+
+.image_display_icon {
+    padding-left: 15px;
+    color:#f39c12;
+}
+
+.btn-save{
+	background-color:#f39c12;
 }
