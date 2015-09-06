@@ -24,7 +24,17 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 			My Items <small>Homepage</small>
 		</h1>
 		<div class="row">
-			<div class="col-md-12">
+	<div class="col-sm-offset-5 col-sm-3">
+	<form action="/Kumart/search" method="post">
+        <div class="input-group">
+         <input type="text" class="form-control" name="query" placeholder="Search by name ...">
+            <span class="input-group-btn">
+                <input class="btn btn-default" aria-hidden="true" type="submit" value="search"/>         
+            </span>          
+        </div>
+      </form>  
+    </div>
+			<div class="col-sm-offset-8">
 				<div class="pull-right">
 					<a class="btn btn-info" data-toggle="modal"
 						data-target="#add_new_item">+ Add a new item</a>
@@ -33,7 +43,7 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 		</div>
 		</section>
 		<!-- Main content -->
-		<section class="content"> <!-- Small boxes (Stat box) -->
+		<section class="content"> 
 		<div class="row">
 			<div class="col-md-12">
 				<!-- PRODUCT LIST -->
@@ -72,7 +82,8 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 			</div>
 			<!-- /.col-md-12 -->
 		</div>
-		<!-- /.row (main row) --> </section>
+		<!-- /.row (main row) -->
+		 </section>
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->

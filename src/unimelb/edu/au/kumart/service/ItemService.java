@@ -44,5 +44,10 @@ public class ItemService {
 		return item;}
 		return null;
 	}
+	
+	public List<Item> search(String query){
+		List<Item> resultList= itemMongo.searchByName(query);
+		return resultList;
+	}
 
 }

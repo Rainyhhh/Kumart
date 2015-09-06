@@ -71,4 +71,15 @@ public class ItemController {
 		return null;		
 	}
 	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(String query){
+		ModelAndView mav = new ModelAndView("/result");
+		List<Item> list = itemService.search(query);
+		if(list!=null){
+			mav.addObject("items",list);
+			return mav;
+		}
+		return null;
+	}
+	
 }

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -62,5 +63,16 @@ public class ItemMongo {
 		return item;
 		}
 		return null;
+	}
+	
+	public List<Item> searchByName(String query){
+		System.out.println(query);
+		BasicQuery search = new BasicQuery("{\"name\": {$regex : '" + query + "'} }");
+		List<Item> list = new ArrayList<Item>();
+		list = this.mongoTemplate.find(search, Item.class, ITEM_COLLECTION);	
+        for (int i = 0; i < list.size(); i++) {
+           System.out.println(list.get(i));
+          }
+		return list;
 	}
 }

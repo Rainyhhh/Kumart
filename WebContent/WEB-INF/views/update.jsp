@@ -51,7 +51,14 @@ pageContext.setAttribute("price", item.getPrice());
 			<span class="required-field">Number:</span> 
 			<input type="text" name="number" class="form-control" value="${number}">
 		</div>
+		<div class="row">
+		<div class="col-sm-6" align="center">
 		<input type=submit class="btn btn-save" value='submit' />
+		</div>
+		<div class="col-sm-6" align="center">
+		<a href="index" type=button class="btn btn-danger">cancel</a>
+		</div>
+		</div>
 	</form>
 	</div>
 	</div>
