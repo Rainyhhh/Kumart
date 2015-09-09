@@ -11,20 +11,20 @@ public class AdminDL implements UserDL{
 	
 	@Autowired
 	private AdminMongo adminMongo;
-	
+
 	@Override
 	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
 		if(adminMongo.login(username, password)) return true;
 		return false;
 	}
-	
+
 	@Override
 	public boolean logout() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public boolean register(User user) {
 		// TODO Auto-generated method stub
