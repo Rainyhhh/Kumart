@@ -13,17 +13,17 @@ public class ItemDLImp implements ItemDL{
 	private ItemMongo itemMongo;
 	
 	public boolean newItem(Item item) {
-		if(item.getDescription()!= null&& item.getName()!=null &&
-			item.getNumber()!=0 && item.getPrice()!= 0){
 		if(itemMongo.newItem(item)) {
 			return true;
-		}
 		}
 		return false;
 	}
 	public List<Item> getItemList(){
 		List<Item> itemlist = itemMongo.getItemList();
-		return itemlist;				
+		if(itemlist!=null){
+		return itemlist;
+		}
+		return null;
 	}
 	
 	public boolean deleteItem(String id){

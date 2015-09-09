@@ -35,8 +35,7 @@ List<Item> items =(List<Item>) request.getAttribute("items");
       </form>  
     </div>
 			<div class="col-sm-offset-9">
-					<a class="btn btn-info" data-toggle="modal"
-						data-target="#add_new_item">+ Add a new item</a>
+					<a class="btn btn-info" href="prepareaddItem">+ Add a new item</a>
 			</div>
 		</div>
 		</section>
@@ -113,7 +112,7 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 		<div class="form-group">
 			<span class="required-field">Number:</span> <input type="text"
 				name="number" class="form-control">
-		</div>
+		</div>		
 		<div class="modal-footer">
         <input type="submit" class="btn btn-save" value='submit'/>
         </div>
