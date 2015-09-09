@@ -1,4 +1,4 @@
-package unimelb.edu.au.kumart.service;
+package unimelb.edu.au.kumart.domainLogic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,19 +7,22 @@ import unimelb.edu.au.kumart.mongodb.ItemMongo;
 import java.util.*;
 
 @Service
-public class ItemService {
+public class ItemDLImp implements ItemDL{
 	
 	@Autowired
 	private ItemMongo itemMongo;
 	
 	public boolean newItem(Item item) {
-		if(itemMongo.addItem(item)) {
+		if(item.getDescription()!= null&& item.getName()!=null &&
+			item.getNumber()!=0 && item.getPrice()!= 0){
+		if(itemMongo.newItem(item)) {
 			return true;
+		}
 		}
 		return false;
 	}
-	public List<Item> getItem(){
-		List<Item> itemlist = itemMongo.getItem();
+	public List<Item> getItemList(){
+		List<Item> itemlist = itemMongo.getItemList();
 		return itemlist;				
 	}
 	
@@ -30,7 +33,7 @@ public class ItemService {
 		return false;
 	}
 	
-	public boolean update(String id, Item item){
+	public boolean updateItem(String id, Item item){
 		item.set_id(id);
 		if(itemMongo.updateItem(item)) {
 			return true;
@@ -43,6 +46,11 @@ public class ItemService {
 		if(item!=null){
 		return item;}
 		return null;
+	}
+	
+	public List<Item> searchByName(String query){
+		List<Item> resultList= itemMongo.searchByName(query);
+		return resultList;
 	}
 
 }
