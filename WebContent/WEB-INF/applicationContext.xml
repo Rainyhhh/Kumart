@@ -16,7 +16,7 @@
 		correct base-package -->
 	<context:component-scan base-package="unimelb.edu.au.kumart.entity" />
 	<context:component-scan base-package="unimelb.edu.au.kumart.mongodb" />
-	<context:component-scan base-package="unimelb.edu.au.kumart.service" />
+	<context:component-scan base-package="unimelb.edu.au.kumart.domainLogic" />
 	<context:component-scan base-package="unimelb.edu.au.kumart.controller" />
 
 	<!-- Configures the annotation-driven Spring MVC Controller programming 

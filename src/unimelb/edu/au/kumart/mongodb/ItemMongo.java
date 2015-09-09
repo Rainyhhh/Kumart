@@ -16,7 +16,7 @@ import unimelb.edu.au.kumart.entity.Item;
 /**
  * 
  * Data source layer.
- * Insert, get, update the collection of Item.
+ * Insert, delete, get, update the collection of Item.
  *
  */
 @Repository
@@ -30,19 +30,22 @@ public class ItemMongo {
 	//Collection name
 	private static String ITEM_COLLECTION = "Item";
 	
+	// Insert a new item to the database
 	public boolean newItem(Item item) {
 		mongoTemplate.save(item, ITEM_COLLECTION);
 		return true;
 	}
 	
+	// Get all items from the database as a list
 	public List<Item> getItemList(){	
 		List<Item> list = new ArrayList<Item>();	
 		list = this.mongoTemplate.findAll(Item.class, ITEM_COLLECTION);
 		return list;
 	}
 
-	
-	public boolean deleteItem(String id){	
+	// Delete an Item from the database
+	public boolean deleteItem(String id){
+		// check if the item with this "id" exists in the database.
 		Item item = getOneItem(id);
 		if(item!=null){
 		mongoTemplate.remove(item, ITEM_COLLECTION);
@@ -51,11 +54,13 @@ public class ItemMongo {
 		return false;
 	}
 	
+	//modify the information of a particular Item
 	public boolean updateItem(Item item){	
 		mongoTemplate.save(item, ITEM_COLLECTION);
 		return true;
 	}
 	
+	// Get a particular item from the database according to the "id"
 	public Item getOneItem(String id){
 		Criteria criteria = Criteria.where("_id").is(id);		
 		if(null!=criteria){
@@ -66,7 +71,9 @@ public class ItemMongo {
 		return null;
 	}
 	
+	// Get a list of items according to the query and it is a fuzzy matching
 	public List<Item> searchByName(String query){
+		// fuzzy matching
 		BasicQuery search = new BasicQuery("{\"name\": {$regex : '" + query + "'} }");
 		List<Item> list = new ArrayList<Item>();
 		list = this.mongoTemplate.find(search, Item.class, ITEM_COLLECTION);	        

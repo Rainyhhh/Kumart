@@ -23,24 +23,31 @@ public class ItemController {
 	
 	private static Logger logger = Logger.getLogger(ItemController.class.getName()); 
 	
-	
-	@RequestMapping(value ="/addItem",method=RequestMethod.POST)
+	// When the user click "submit" button, if the item is added successfully, the interface 
+	// will redirect to index page. Otherwise, add a new item page will show error message.
+	@RequestMapping(value ="/addItem",method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView newItem(Item item) {
-		//logger.info("sfwefwf");
-		ModelAndView mav = new ModelAndView("redirect:/index");
+	
 		if(itemService.newItem(item)) {
-			return mav;
+			return new ModelAndView("redirect:/index");
 		}	
-		else{
-			String msg = "please input valid values!";
-			mav.addObject("message", msg);			
-		}
-		return null;		
+		return null;				
 	}
+	
+	// when the user click the "add a new item" button, the user interface will redirect to 
+	// add a new item 
+	@RequestMapping("prepareaddItem")
+	public ModelAndView prepareNewItem() {
+		ModelAndView mav = new ModelAndView("/addNewItem");
+		return mav;
+	}
+	
+	// It is the index page after the user log in, this page show all items of the store.
 	@RequestMapping("index")
 	public ModelAndView getItemList(){
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();
+		// double check if the list is not null
 		if(list!= null){
 			mav.addObject("items",list);
 			return mav;
@@ -48,6 +55,8 @@ public class ItemController {
 		return null;
 	}
 	
+	// When the user click the "delete" button in UI, if the item is deleted successfully, it will
+	// redirect to index page.
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(@RequestParam String id){
 		if(itemService.deleteItem(id)){
@@ -56,6 +65,7 @@ public class ItemController {
 		return null;
 	}
 	
+	// it shows the information of the item which will be modified later
 	@RequestMapping(value = "/prepareUpdate", method = RequestMethod.GET)
 	public ModelAndView prepareUpdate(@RequestParam String id){
 		ModelAndView mav = new ModelAndView("/update");
@@ -67,6 +77,7 @@ public class ItemController {
 		return null;
 	}
 	
+	//where users edit the information of one item.
 	@RequestMapping(value ="/update",method=RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, Item item) {
 		String id = req.getParameter("_id");
@@ -76,8 +87,10 @@ public class ItemController {
 		return null;		
 	}
 	
+	// after the user inputs the query and click search button, this method will be executed
+	// and show the result in result page.
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(String query){
+	public ModelAndView searchByName(String query){
 		ModelAndView mav = new ModelAndView("/result");
 		List<Item> list = itemService.searchByName(query);
 		if(list!=null){
