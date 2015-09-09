@@ -17,17 +17,17 @@
 				<li class="dropdown user user-menu"><a class="dropdown-toggle"
 					data-toggle="dropdown" style="cursor: pointer"> <img
 						src="images/man-icon.png" class="user-image"
-						alt="User Image" /> <span class="hidden-xs">Shelly</span>
+						alt="User Image" /> <span class="hidden-xs">${username }</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header"><img src="images/man-icon.png"
 							class="img-circle" alt="User Image" />
-							<p>Shelly</p></li>
+							<p>${username }</p></li>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div align="center">
-								<a class="btn btn-default btn-flat" ng-click="logoutClick()">Sign
+								<a href="logout" class="btn btn-default btn-flat" ng-click="logoutClick()">Sign
 									out</a>
 							</div>
 						</li>

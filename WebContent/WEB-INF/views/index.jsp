@@ -36,7 +36,7 @@ List<Item> items =(List<Item>) request.getAttribute("items");
     </div>
 			<div class="col-sm-offset-9">
 					<a class="btn btn-info" data-toggle="modal"
-						data-target="#add_new_item">+ Add a new item</a>
+						data-target="#add_new_item">+ Add new Item</a>
 			</div>
 		</div>
 		</section>

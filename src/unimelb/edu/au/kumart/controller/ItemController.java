@@ -25,8 +25,9 @@ public class ItemController {
 	
 	
 	@RequestMapping(value ="/addItem",method=RequestMethod.POST)
-	public ModelAndView newItem(Item item) {
+	public ModelAndView newItem(HttpServletRequest request, Item item) {
 		//logger.info("sfwefwf");
+		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("redirect:/index");
 		if(itemService.newItem(item)) {
 			return mav;
@@ -38,7 +39,8 @@ public class ItemController {
 		return null;		
 	}
 	@RequestMapping("index")
-	public ModelAndView getItemList(){
+	public ModelAndView getItemList(HttpServletRequest request){
+		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();
 		if(list!= null){
@@ -49,7 +51,9 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
-	public ModelAndView deleteItem(@RequestParam String id){
+	public ModelAndView deleteItem(HttpServletRequest request){
+		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		String id = request.getParameter("id");
 		if(itemService.deleteItem(id)){
 			return new ModelAndView("redirect:/index");
 		}
@@ -57,7 +61,9 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/prepareUpdate", method = RequestMethod.GET)
-	public ModelAndView prepareUpdate(@RequestParam String id){
+	public ModelAndView prepareUpdate(HttpServletRequest request){
+		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		String id = request.getParameter("id");
 		ModelAndView mav = new ModelAndView("/update");
 		Item item = itemService.getOneItem(id);
 		if(item!=null){
@@ -69,15 +75,18 @@ public class ItemController {
 	
 	@RequestMapping(value ="/update",method=RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, Item item) {
+		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		String id = req.getParameter("_id");
 		if(itemService.updateItem(id, item)) {
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:/index", "message", "dkfwkjflewkfw");
 		}				
 		return null;		
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(String query){
+	public ModelAndView search(HttpServletRequest req){
+		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		String query = req.getParameter("query");
 		ModelAndView mav = new ModelAndView("/result");
 		List<Item> list = itemService.searchByName(query);
 		if(list!=null){
