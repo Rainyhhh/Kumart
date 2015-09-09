@@ -1,6 +1,7 @@
 package unimelb.edu.au.kumart.mongodb;
 
 import java.util.*;
+
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
@@ -29,12 +30,12 @@ public class ItemMongo {
 	//Collection name
 	private static String ITEM_COLLECTION = "Item";
 	
-	public boolean addItem(Item item) {
+	public boolean newItem(Item item) {
 		mongoTemplate.save(item, ITEM_COLLECTION);
 		return true;
 	}
 	
-	public List<Item> getItem(){	
+	public List<Item> getItemList(){	
 		List<Item> list = new ArrayList<Item>();	
 		list = this.mongoTemplate.findAll(Item.class, ITEM_COLLECTION);
 		return list;
@@ -66,13 +67,9 @@ public class ItemMongo {
 	}
 	
 	public List<Item> searchByName(String query){
-		System.out.println(query);
 		BasicQuery search = new BasicQuery("{\"name\": {$regex : '" + query + "'} }");
 		List<Item> list = new ArrayList<Item>();
-		list = this.mongoTemplate.find(search, Item.class, ITEM_COLLECTION);	
-        for (int i = 0; i < list.size(); i++) {
-           System.out.println(list.get(i));
-          }
+		list = this.mongoTemplate.find(search, Item.class, ITEM_COLLECTION);	        
 		return list;
 	}
 }
