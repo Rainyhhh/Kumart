@@ -30,19 +30,26 @@ public class ItemController {
 		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("redirect:/index");
 		if(itemService.newItem(item)) {
-			return mav;
+			return new ModelAndView("redirect:/index");
 		}	
-		else{
-			String msg = "please input valid values!";
-			mav.addObject("message", msg);			
-		}
-		return null;		
+		return null;				
 	}
+	
+	// when the user click the "add a new item" button, the user interface will redirect to 
+	// add a new item 
+	@RequestMapping("prepareaddItem")
+	public ModelAndView prepareNewItem() {
+		ModelAndView mav = new ModelAndView("/addNewItem");
+		return mav;
+	}
+	
+	// It is the index page after the user log in, this page show all items of the store.
 	@RequestMapping("index")
 	public ModelAndView getItemList(HttpServletRequest request){
 		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();
+		// double check if the list is not null
 		if(list!= null){
 			mav.addObject("items",list);
 			return mav;
@@ -50,6 +57,8 @@ public class ItemController {
 		return null;
 	}
 	
+	// When the user click the "delete" button in UI, if the item is deleted successfully, it will
+	// redirect to index page.
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(HttpServletRequest request){
 		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
@@ -60,6 +69,7 @@ public class ItemController {
 		return null;
 	}
 	
+	// it shows the information of the item which will be modified later
 	@RequestMapping(value = "/prepareUpdate", method = RequestMethod.GET)
 	public ModelAndView prepareUpdate(HttpServletRequest request){
 		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
@@ -73,16 +83,19 @@ public class ItemController {
 		return null;
 	}
 	
+	//where users edit the information of one item.
 	@RequestMapping(value ="/update",method=RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, Item item) {
 		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
 		String id = req.getParameter("_id");
 		if(itemService.updateItem(id, item)) {
-			return new ModelAndView("redirect:/index", "message", "dkfwkjflewkfw");
+			return new ModelAndView("redirect:/index");
 		}				
 		return null;		
 	}
 	
+	// after the user inputs the query and click search button, this method will be executed
+	// and show the result in result page.
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(HttpServletRequest req){
 		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
