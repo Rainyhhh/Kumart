@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+.image-border {
+	border: 1px solid grey;
+}
+
+.content{
+	margin-top:20px;
+}
+.content-wrapper{
+	background-color: #fff;
+}
+.small-box .small-box-footer{
+	background-color:#ECF0EF;
+}
+
+.image_display_icon {
+    padding-left: 15px;
+    color:#f39c12;
+}
+
+.btn-save{
+	background-color:#f39c12;
+}
+ .panel-info {
+  border-color: #f39c12;
+  margin-top:30px;
+ }
+.panel-info > .panel-heading {
+    color: #fff;
+    font-weight:bold;
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
