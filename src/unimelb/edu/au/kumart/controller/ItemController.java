@@ -21,13 +21,11 @@ public class ItemController {
 	@Autowired
 	private ItemDLImp itemService;
 	
-	private static Logger logger = Logger.getLogger(ItemController.class.getName()); 
-	
 	
 	@RequestMapping(value ="/addItem",method=RequestMethod.POST)
 	public ModelAndView newItem(HttpServletRequest request, Item item) {
 		//logger.info("sfwefwf");
-		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("redirect:/index");
 		if(itemService.newItem(item)) {
 			return new ModelAndView("redirect:/index");
@@ -46,7 +44,7 @@ public class ItemController {
 	// It is the index page after the user log in, this page show all items of the store.
 	@RequestMapping("index")
 	public ModelAndView getItemList(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();
 		// double check if the list is not null
@@ -61,7 +59,7 @@ public class ItemController {
 	// redirect to index page.
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		String id = request.getParameter("id");
 		if(itemService.deleteItem(id)){
 			return new ModelAndView("redirect:/index");
@@ -72,7 +70,7 @@ public class ItemController {
 	// it shows the information of the item which will be modified later
 	@RequestMapping(value = "/prepareUpdate", method = RequestMethod.GET)
 	public ModelAndView prepareUpdate(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		String id = request.getParameter("id");
 		ModelAndView mav = new ModelAndView("/update");
 		Item item = itemService.getOneItem(id);
@@ -86,7 +84,7 @@ public class ItemController {
 	//where users edit the information of one item.
 	@RequestMapping(value ="/update",method=RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, Item item) {
-		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(req.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		String id = req.getParameter("_id");
 		if(itemService.updateItem(id, item)) {
 			return new ModelAndView("redirect:/index");
@@ -98,7 +96,7 @@ public class ItemController {
 	// and show the result in result page.
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(HttpServletRequest req){
-		if(req.getSession().getAttribute("username") == null) return new ModelAndView("redirect:/login");
+		if(req.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
 		String query = req.getParameter("query");
 		ModelAndView mav = new ModelAndView("/result");
 		List<Item> list = itemService.searchByName(query);

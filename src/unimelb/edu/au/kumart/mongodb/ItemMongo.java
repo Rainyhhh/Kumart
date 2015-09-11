@@ -1,7 +1,6 @@
 package unimelb.edu.au.kumart.mongodb;
 
 import java.util.*;
-
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
@@ -11,6 +10,7 @@ import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
 import unimelb.edu.au.kumart.entity.Item;
 
 /**
@@ -44,14 +44,10 @@ public class ItemMongo {
 	}
 
 	// Delete an Item from the database
-	public boolean deleteItem(String id){
+	public boolean deleteItem(Item item){
 		// check if the item with this "id" exists in the database.
-		Item item = getOneItem(id);
-		if(item!=null){
 		mongoTemplate.remove(item, ITEM_COLLECTION);
 		return true;
-		}
-		return false;
 	}
 	
 	//modify the information of a particular Item

@@ -36,8 +36,7 @@
 				</form>
 			</div>
 			<div class="col-sm-offset-9">
-				<a class="btn btn-info" data-toggle="modal"
-					data-target="#add_new_item">+ Add new Item</a>
+				<a class="btn btn-info" href="prepareaddItem">+ Add new Item</a>
 			</div>
 		</div>
 		</section>
@@ -66,11 +65,15 @@
 									</div>
 
 									<div class="col-sm-6">
-										<a href="prepareUpdate?id=${_id}"><i
+										<a href="prepareUpdate?id=${_id}"> <i
 											class="glyphicon glyphicon-pencil image_display_icon"
-											aria-hidden="true"></i></a> <a href="deleteItem?id=${_id}"><i
+											aria-hidden="true"></i>
+										</a> 
+										<a href="deleteItem?id=${_id}"
+											onclick="return confirm('Delete this item?')"> <i
 											class="glyphicon glyphicon-trash image_display_icon"
-											aria-hidden="true"></i></a>
+											aria-hidden="true"></i>
+										</a>
 									</div>
 								</div>
 							</div>

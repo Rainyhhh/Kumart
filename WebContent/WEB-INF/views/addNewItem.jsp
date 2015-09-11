@@ -33,19 +33,19 @@ pageContext.setAttribute("message", message);
    	   <form action="/Kumart/addItem" method="post" style="padding: 20px;">
 		<div class="form-group">
 			<span class="required-field">Name:</span> <input type="text"
-				name="name" class="form-control">
+				name="name" class="form-control" required="true">
 		</div>
 		<div class="form-group">
 			<span class="required-field">Description:</span> <input type="text"
-				name="description" class="form-control">
+				name="description" class="form-control" required="true">
 		</div>
 		<div class="form-group">
-			<span class="required-field">Price:</span> <input type="text"
-				name="price" class="form-control">
+			<span class="required-field">Price:</span> <input type="number"
+				name="price" class="form-control" min="1" required="true">
 		</div>
 		<div class="form-group">
-			<span class="required-field">Number:</span> <input type="text"
-				name="number" class="form-control">
+			<span class="required-field">Number:</span> <input type="number"
+				name="number" class="form-control" min="1" required="true">
 		</div>		
 		<div class="modal-footer">
         <input type="submit" class="btn btn-save" value='submit'/>

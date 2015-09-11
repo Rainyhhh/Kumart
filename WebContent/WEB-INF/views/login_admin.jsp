@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Login Admin</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/AdminLTE.min.css">
 <link rel="stylesheet" type="text/css"
@@ -14,17 +14,17 @@
 <body>
 <div class="login-box">
       <div class="login-logo">
-        <a><b>Admin</b>LTE</a>
+        <a><b>Admin</b>KuMart</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <form action="loginCheck" method="get">
           <div class="form-group has-feedback">
-            <input name="username" type="email" class="form-control" placeholder="Email"/>
+            <input name="username" type="email" class="form-control" placeholder="Email" required="true"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <input name="password" type="password" class="form-control" placeholder="Password" required="true"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -39,7 +39,6 @@
           </div>
         </form>
 
-        <a href="register.html" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
