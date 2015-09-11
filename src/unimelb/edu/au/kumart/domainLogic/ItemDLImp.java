@@ -17,6 +17,7 @@ public class ItemDLImp implements ItemDL{
 	@Override
 	public boolean newItem(Item item) {
 		// TODO Auto-generated method stub
+		item.setCreateTime(new Date());
 		if(itemMongo.newItem(item)) {
 			return true;
 		}
@@ -46,6 +47,7 @@ public class ItemDLImp implements ItemDL{
 	public boolean updateItem(String id, Item item){
 		// TODO Auto-generated method stub
 		item.set_id(id);
+		item.setUpdateTime(new Date());
 		if(itemMongo.updateItem(item)) {
 			return true;
 		}

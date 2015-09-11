@@ -1,6 +1,7 @@
 package unimelb.edu.au.kumart.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
@@ -18,7 +19,21 @@ public class Item implements Serializable{
 	private String description;
 	private int price;
 	private int number;
+	private Date createTime;
+	private Date updateTime;
 	
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 	public String get_id() {
 		return _id;
 	}
