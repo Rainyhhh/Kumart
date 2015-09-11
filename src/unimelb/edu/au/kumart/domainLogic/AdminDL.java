@@ -13,6 +13,12 @@ public class AdminDL implements UserDL{
 	@Autowired
 	private AdminMongo adminMongo;
 
+	/**
+	 * check if the username and password pair is exist and then check if the role of the user is Admin.
+	 * @param username
+	 * @param password
+	 * @return if the role is admin, return true. otherwise, return false.
+	 */
 	@Override
 	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
@@ -21,6 +27,10 @@ public class AdminDL implements UserDL{
 		return false;
 	}
 
+	/**
+	 * logout 
+	 * @return false
+	 */
 	@Override
 	public boolean logout() {
 		// TODO Auto-generated method stub

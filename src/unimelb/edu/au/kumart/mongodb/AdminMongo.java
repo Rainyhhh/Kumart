@@ -16,6 +16,12 @@ public class AdminMongo {
 
 	private static String ADMIN_COLLECTION = "User";
 
+	/**
+	 * check if the username and password pair is exist in the databse
+	 * @param username
+	 * @param password
+	 * @return an Admin object or null
+	 */
 	public Admin login(String username, String password) {
 		Criteria criteria1 = Criteria.where("email").is(username);
 		Criteria criteria2 = Criteria.where("password").is(password);

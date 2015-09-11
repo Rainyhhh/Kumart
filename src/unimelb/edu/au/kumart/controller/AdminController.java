@@ -16,7 +16,11 @@ public class AdminController {
 
 	@Autowired
 	private AdminDL adminDL;
-	
+	/**
+	 * show login page
+	 * @param request
+	 * @return login page
+	 */
 	@RequestMapping("login")
 	public ModelAndView login(HttpServletRequest request) {
 		if(request.getSession().getAttribute("username") != "") return new ModelAndView("redirect:/index");
@@ -24,6 +28,13 @@ public class AdminController {
 		
 	}
 	
+	/**
+	 * get username and password from the user interface and pass these two parameters to next layer
+	 * and check if the username and password pair is valid.
+	 * If it is valid, redirect to Admin index page; if not, return error message.
+	 * @param request
+	 * @return if username and password pair is valid, return indext page, otherwise stay in login page.
+	 */
 	@RequestMapping(value ="/loginCheck",method=RequestMethod.GET)
 	public ModelAndView loginCheck(HttpServletRequest request) {
 		String username = request.getParameter("username");
@@ -38,6 +49,11 @@ public class AdminController {
 		}
 	}
 	
+	/**
+	 * user logout and redirect to login page.
+	 * @param request
+	 * @return login page
+	 */
 	@RequestMapping("logout")
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().setAttribute("username", "");
