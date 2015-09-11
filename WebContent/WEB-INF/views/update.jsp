@@ -37,19 +37,19 @@ pageContext.setAttribute("price", item.getPrice());
         <input type="hidden" name="_id" value="${_id}">
 		<div class="form-group">
 			<span class="required-field">Name:</span> 
-			<input type="text" name="name" class="form-control" value="${name}">
+			<input type="text" name="name" class="form-control" value="${name}" required="true">
 		</div>
 		<div class="form-group">
 			<span class="required-field">Description:</span> 
-			<input type="text" name="description" class="form-control" value="${description}">
+			<input type="text" name="description" class="form-control" value="${description}" required="true">
 		</div>
 		<div class="form-group">
 			<span class="required-field">Price:</span> 
-			<input type="text" name="price" class="form-control" value="${price}">
+			<input type="number" name="price" class="form-control" value="${price}" min="1" required="true">
 		</div>
 		<div class="form-group">
 			<span class="required-field">Number:</span> 
-			<input type="text" name="number" class="form-control" value="${number}">
+			<input type="number" name="number" class="form-control" value="${number}" min="1" required="true">
 		</div>
 		<div class="row">
 		<div class="col-sm-6" align="center">

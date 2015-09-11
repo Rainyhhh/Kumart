@@ -19,7 +19,7 @@ public class AdminController {
 	
 	@RequestMapping("login")
 	public ModelAndView login(HttpServletRequest request) {
-		if(request.getSession().getAttribute("username") != null) return new ModelAndView("redirect:/index");
+		if(request.getSession().getAttribute("username") != "") return new ModelAndView("redirect:/index");
 		return new ModelAndView("/login_admin");
 		
 	}
@@ -40,7 +40,7 @@ public class AdminController {
 	
 	@RequestMapping("logout")
 	public ModelAndView logout(HttpServletRequest request) {
-		request.getSession().setAttribute("username", null);
+		request.getSession().setAttribute("username", "");
 		return new ModelAndView("redirect:/login"); 
 	}
 	
