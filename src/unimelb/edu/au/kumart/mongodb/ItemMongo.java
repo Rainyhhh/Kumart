@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.WriteResult;
+
 import unimelb.edu.au.kumart.entity.Item;
 
 /**
@@ -24,7 +26,6 @@ public class ItemMongo {
 
 	@Autowired
 	MongoTemplate mongoTemplate;
-	Logger logger ;
 	
 	
 	//Collection name
@@ -36,7 +37,7 @@ public class ItemMongo {
 	 * @return if success, return true; otherwise, return false.
 	 */
 	public boolean newItem(Item item) {
-		mongoTemplate.insert(item, ITEM_COLLECTION);
+		mongoTemplate.insert(item, ITEM_COLLECTION);		 
 		return true;
 	}
 	
