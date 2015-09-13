@@ -45,7 +45,8 @@ public class AdminController {
 			return new ModelAndView("redirect:/index");
 		}
 		else {
-			return new ModelAndView("login_admin", "error", "Invalid username or password!");
+			request.setAttribute("error", "Invalid username or password!");
+			return new ModelAndView("login_admin");
 		}
 	}
 	

@@ -48,7 +48,14 @@ pageContext.setAttribute("message", message);
 				name="number" class="form-control" min="1" required="true">
 		</div>		
 		<div class="modal-footer">
+		<div class="row">
+		<div class="col-sm-6" align="center">
         <input type="submit" class="btn btn-save" value='submit'/>
+        </div>
+        <div class="col-sm-6" align="center">
+        <a href="index" type="button" class="btn btn-save"> Cancel</a>
+        </div>
+        </div>
         </div>
 	</form>
 	<div>
