@@ -27,7 +27,7 @@
 		</h1>
 		<div class="row">
 			<div class="col-sm-offset-5 col-sm-3">
-				<form action="/Kumart/search" method="post">
+				<form action="/Kumart/admin_search" method="post">
 					<div class="input-group">
 						<input type="text" class="form-control" name="query"
 							placeholder="Search by name ..."> <span
@@ -38,7 +38,7 @@
 				</form>
 			</div>
 			<div class="col-sm-offset-9">
-				<a class="btn btn-info" href="prepareaddItem">+ Add new Item</a>
+				<a class="btn btn-info" href="/Kumart/admin_prepareaddItem">+ Add new Item</a>
 			</div>
 		</div>
 		</section>
@@ -63,13 +63,18 @@
 						<div class="col-md-12">
 						<div class="col-md-6">
 							<a href="#" class="text-yellow"><h4>${name}</h4></a>
-							</div>
-							<div class="col-sm-6" style="padding-top: 10px;">
-										<a href="prepareUpdate?id=${_id}"> <i
-											class="glyphicon glyphicon-pencil image_display_icon"
+							<div class="row">
+								<div class="col-md-12">
+									<div class="col-sm-6">
+										<h5>AU$${price}</h5>
+									</div>
+
+									<div class="col-sm-6">
+										<a href="admin_prepareUpdate?id=${_id}"> 
+										<i class="glyphicon glyphicon-pencil image_display_icon"
 											aria-hidden="true"></i>
 										</a> 
-										<a href="deleteItem?id=${_id}"
+										<a href="admin_deleteItem?id=${_id}"
 											onclick="return confirm('Delete this item?')"> <i
 											class="glyphicon glyphicon-trash image_display_icon"
 											aria-hidden="true"></i>
@@ -101,45 +106,5 @@
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
-
-
-
-	<div id="add_new_item" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="addModal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="addModal">Add an Item</h4>
-				</div>
-				<div class="modal-body">
-					<form action="/Kumart/addItem" method="post">
-						<div class="form-group">
-							<span class="required-field">Name:</span> <input type="text"
-								name="name" class="form-control">
-						</div>
-						<div class="form-group">
-							<span class="required-field">Description:</span> <input
-								type="text" name="description" class="form-control">
-						</div>
-						<div class="form-group">
-							<span class="required-field">Price:</span> <input type="text"
-								name="price" class="form-control">
-						</div>
-						<div class="form-group">
-							<span class="required-field">Number:</span> <input type="text"
-								name="number" class="form-control">
-						</div>
-						<div class="modal-footer">
-							<input type="submit" class="btn btn-save" value='submit' />
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>

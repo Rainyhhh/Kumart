@@ -27,7 +27,7 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div align="center">
-								<a href="logout" class="btn btn-default btn-flat" ng-click="logoutClick()">Sign
+								<a href="/Kumart/admin_logout" class="btn btn-default btn-flat">Sign
 									out</a>
 							</div>
 						</li>

@@ -22,13 +22,38 @@
 	<!-- Configures the annotation-driven Spring MVC Controller programming 
 		model.Note that, with Spring 3.0, this tag works in Servlet MVC only! -->
 	<mvc:annotation-driven />
+
+
+	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
+	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+	<mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
+	<mvc:default-servlet-handler />
 	
-	<mvc:resources mapping="/images/**" location="/WEB-INF/images/"/> 
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/> 
-    <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/"/> 
-    <mvc:default-servlet-handler />  
-    
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="unimelb.edu.au.kumart.controller.LoginInterceptor">
+			<property name="excludedUrls">
+                <list>
+                    <value>login</value>
+                    <value>register</value>
+                    <value>logout</value>
+                </list>
+            </property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="handlerExceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>			
+				<prop key="unimelb.edu.au.kumart.exception.AuthorizationAdminException">redirect:admin_login</prop>
+			</props>
+		</property>
+	</bean>
+
 	<!-- Loads MongoDB configuraton -->
 	<import resource="mongo-config.xml" />
 
