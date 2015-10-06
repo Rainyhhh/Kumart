@@ -15,11 +15,6 @@ public interface UserDL {
      */
 	public abstract boolean login(String username, String password);
 	
-	/**
-	 * user log out
-	 * @return if success, return true; otherwise, return false.
-	 */
-	public abstract boolean logout();
 	
 	/**
 	 * user register with provided information

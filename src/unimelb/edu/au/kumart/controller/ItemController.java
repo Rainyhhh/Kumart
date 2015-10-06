@@ -24,12 +24,11 @@ public class ItemController {
 	/**
 	 * after users input valid values and click "submit" button, this method will be 
 	 * executed.Create an new Item object and show the new item in the user interface.
-	 * @param request
 	 * @param item
 	 * @return index page
 	 */
 	@RequestMapping(value ="/admin_addItem",method=RequestMethod.POST)
-	public ModelAndView newItem(HttpServletRequest request, Item item) {
+	public ModelAndView newItem(Item item) {
 
 		if(itemService.newItem(item)) {
 			return new ModelAndView("redirect:/admin_index");
@@ -50,11 +49,10 @@ public class ItemController {
 	
 	/**
 	 * It is the index page after the user log in, this page show all items of the store.
-	 * @param request
 	 * @return index page
 	 */
 	@RequestMapping("/admin_index")
-	public ModelAndView getItemList(HttpServletRequest request){
+	public ModelAndView getItemList(){
 
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();

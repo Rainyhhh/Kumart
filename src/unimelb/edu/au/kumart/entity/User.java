@@ -1,6 +1,7 @@
 package unimelb.edu.au.kumart.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
@@ -13,6 +14,21 @@ public class User implements Serializable{
 	private String email;
 	private String password;
 	private String role;
+	private Date createTime;
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getModifiedTime() {
+		return modifiedTime;
+	}
+	public void setModifiedTime(Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+	private Date modifiedTime;
+	
 	
 	public String get_id() {
 		return _id;
