@@ -23,7 +23,7 @@ public class AdminController {
 	 */
 	@RequestMapping("/admin_login")
 	public ModelAndView login(HttpServletRequest request) {
-		System.out.println(request.getSession().getAttribute("username"));
+		//System.out.println(request.getSession().getAttribute("username"));
 		if(!(request.getSession().getAttribute("username") == null) && request.getSession().getAttribute("username") != "") {
 			return new ModelAndView("redirect:/admin_index");
 		}

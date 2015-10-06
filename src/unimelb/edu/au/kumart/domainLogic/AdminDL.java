@@ -27,16 +27,6 @@ public class AdminDL implements UserDL{
 		return false;
 	}
 
-	/**
-	 * logout 
-	 * @return false
-	 */
-	@Override
-	public boolean logout() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public boolean register(User user) {
 		// TODO Auto-generated method stub
