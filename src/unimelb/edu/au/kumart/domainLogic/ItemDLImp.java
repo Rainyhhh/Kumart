@@ -18,6 +18,7 @@ public class ItemDLImp implements ItemDL{
 	public boolean newItem(Item item) {
 		// TODO Auto-generated method stub
 		item.setCreateTime(new Date());
+		item.setUpdateTime(item.getCreateTime());
 		if(itemMongo.newItem(item)) {
 			return true;
 		}
