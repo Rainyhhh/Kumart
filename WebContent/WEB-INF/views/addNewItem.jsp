@@ -30,7 +30,7 @@ pageContext.setAttribute("message", message);
                 <div class="panel-title text-center">Item Information</div>
             </div>	
             <div class="panel body">
-   	   <form action="/Kumart/addItem" method="post" style="padding: 20px;">
+   	   <form action="/Kumart/admin_addItem" method="post" style="padding: 20px;">
 		<div class="form-group">
 			<span class="required-field">Name:</span> <input type="text"
 				name="name" class="form-control" required="true">

@@ -21,9 +21,12 @@ public class AdminController {
 	 * @param request
 	 * @return login page
 	 */
-	@RequestMapping("login")
+	@RequestMapping("/admin_login")
 	public ModelAndView login(HttpServletRequest request) {
-		if(request.getSession().getAttribute("username") != "") return new ModelAndView("redirect:/index");
+		System.out.println(request.getSession().getAttribute("username"));
+		if(!(request.getSession().getAttribute("username") == null) && request.getSession().getAttribute("username") != "") {
+			return new ModelAndView("redirect:/admin_index");
+		}
 		return new ModelAndView("/login_admin");
 		
 	}
@@ -35,14 +38,14 @@ public class AdminController {
 	 * @param request
 	 * @return if username and password pair is valid, return indext page, otherwise stay in login page.
 	 */
-	@RequestMapping(value ="/loginCheck",method=RequestMethod.GET)
+	@RequestMapping(value ="/admin_loginCheck",method=RequestMethod.GET)
 	public ModelAndView loginCheck(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		if(adminDL.login(username, password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:/admin_index");
 		}
 		else {
 			return new ModelAndView("login_admin", "error", "Invalid username or password!");
@@ -54,10 +57,10 @@ public class AdminController {
 	 * @param request
 	 * @return login page
 	 */
-	@RequestMapping("logout")
+	@RequestMapping("/admin_logout")
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().setAttribute("username", "");
-		return new ModelAndView("redirect:/login"); 
+		return new ModelAndView("redirect:/admin_login"); 
 	}
 	
 }

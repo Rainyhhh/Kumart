@@ -28,13 +28,11 @@ public class ItemController {
 	 * @param item
 	 * @return index page
 	 */
-	@RequestMapping(value ="/addItem",method=RequestMethod.POST)
+	@RequestMapping(value ="/admin_addItem",method=RequestMethod.POST)
 	public ModelAndView newItem(HttpServletRequest request, Item item) {
-		//logger.info("sfwefwf");
-		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
-		ModelAndView mav = new ModelAndView("redirect:/index");
+
 		if(itemService.newItem(item)) {
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:/admin_index");
 		}	
 		return null;				
 	}
@@ -44,7 +42,7 @@ public class ItemController {
 	 * add a new item
 	 * @return addNeeItem page
 	 */
-	@RequestMapping("prepareaddItem")
+	@RequestMapping("/admin_prepareaddItem")
 	public ModelAndView prepareNewItem() {
 		ModelAndView mav = new ModelAndView("/addNewItem");
 		return mav;
@@ -55,9 +53,9 @@ public class ItemController {
 	 * @param request
 	 * @return index page
 	 */
-	@RequestMapping("index")
+	@RequestMapping("/admin_index")
 	public ModelAndView getItemList(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
+
 		ModelAndView mav = new ModelAndView("/index");
 		List<Item> list = itemService.getItemList();
 		// double check if the list is not null
@@ -74,12 +72,12 @@ public class ItemController {
 	 * @param request
 	 * @return index page
 	 */
-	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_deleteItem", method = RequestMethod.GET)
 	public ModelAndView deleteItem(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
+
 		String id = request.getParameter("id");
 		if(itemService.deleteItem(id)){
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:/admin_index");
 		}
 		return null;
 	}
@@ -89,9 +87,9 @@ public class ItemController {
 	 * @param request
 	 * @return update page
 	 */
-	@RequestMapping(value = "/prepareUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_prepareUpdate", method = RequestMethod.GET)
 	public ModelAndView prepareUpdate(HttpServletRequest request){
-		if(request.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
+
 		String id = request.getParameter("id");
 		ModelAndView mav = new ModelAndView("/update");
 		Item item = itemService.getOneItem(id);
@@ -108,12 +106,12 @@ public class ItemController {
 	 * @param item
 	 * @return index page
 	 */
-	@RequestMapping(value ="/update",method=RequestMethod.POST)
+	@RequestMapping(value ="/admin_update",method=RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, Item item) {
-		if(req.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
+
 		String id = req.getParameter("_id");
 		if(itemService.updateItem(id, item)) {
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:admin_index");
 		}				
 		return null;		
 	}
@@ -124,9 +122,9 @@ public class ItemController {
 	 * @param req
 	 * @return result page
 	 */
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin_search", method = RequestMethod.POST)
 	public ModelAndView search(HttpServletRequest req){
-		if(req.getSession().getAttribute("username") == "") return new ModelAndView("redirect:/login");
+
 		String query = req.getParameter("query");
 		ModelAndView mav = new ModelAndView("/result");
 		List<Item> list = itemService.searchByName(query);

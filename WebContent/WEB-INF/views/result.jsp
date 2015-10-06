@@ -44,9 +44,9 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 							    </div>
 					    
 					     <div class="col-sm-6">
-								<a href="prepareUpdate?id=${_id}"><i class="glyphicon glyphicon-pencil image_display_icon" aria-hidden="true"></i></a>
+								<a href="admin_prepareUpdate?id=${_id}"><i class="glyphicon glyphicon-pencil image_display_icon" aria-hidden="true"></i></a>
 								<a
-									href="deleteItem?id=${_id}"><i  class="glyphicon glyphicon-trash image_display_icon" aria-hidden="true"></i></a>
+									href="admin_deleteItem?id=${_id}"><i  class="glyphicon glyphicon-trash image_display_icon" aria-hidden="true"></i></a>
 							</div>   	
 							   </div> 
 							   </div>					
@@ -59,7 +59,7 @@ List<Item> items =(List<Item>) request.getAttribute("items");
 				%>
 			</div>
 			<!-- /.col-md-12 -->
-			<a href="index" class="btn btn-save"> Back </a>
+			<a href="admin_index" class="btn btn-save"> Back </a>
 		</div>
 		</section>
 

@@ -33,7 +33,7 @@ pageContext.setAttribute("price", item.getPrice());
                 <div class="panel-title text-center">Item Information</div>
             </div>	
             <div class="panel body">
-<form action="/Kumart/update" method="post" style="padding: 20px;">
+<form action="/Kumart/admin_update" method="post" style="padding: 20px;">
         <input type="hidden" name="_id" value="${_id}">
 		<div class="form-group">
 			<span class="required-field">Name:</span> 
