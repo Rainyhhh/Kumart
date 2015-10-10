@@ -1,10 +1,12 @@
 package unimelb.edu.au.kumart.entity;
 
+import java.util.List;
+
 public class Customer extends User{
 	
 	private String postAddress;
 	private String phoneNumber;
-	
+
 	public Customer() {
 		super();
 	}
