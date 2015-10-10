@@ -2,44 +2,48 @@ package unimelb.edu.au.kumart.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-public class Order implements Serializable{
-private static final long serialVersionUID = 1L;
+public class Order implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int item_id;
-	private int user_id;
-	private int quantity;
-	private int status;
+	private String order_id;
+	private List<OrderItem> itemList;
+	private String user_id;
+	private int state;
 	private Date createTime;
 	private Date modifiedTime;
 	
-	public int getItem_id() {
-		return item_id;
+	
+	public String getOrder_id() {
+		return order_id;
 	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
+	public void setOrder_id(String order_id) {
+		this.order_id = order_id;
 	}
-	public int getUser_id() {
+	public List<OrderItem> getItemList() {
+		return itemList;
+	}
+	public void setItemList(List<OrderItem> itemList) {
+		this.itemList = itemList;
+	}
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public int getQuantity() {
-		return quantity;
+	public int getState() {
+		return state;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setState(int state) {
+		this.state = state;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -51,8 +55,5 @@ private static final long serialVersionUID = 1L;
 	}
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

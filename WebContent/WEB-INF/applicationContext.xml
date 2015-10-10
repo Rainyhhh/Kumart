@@ -50,6 +50,7 @@
 		<property name="exceptionMappings">
 			<props>			
 				<prop key="unimelb.edu.au.kumart.exception.AuthorizationAdminException">redirect:admin_login</prop>
+				<prop key="unimelb.edu.au.kumart.exception.AuthorizationException">redirect:index</prop>
 			</props>
 		</property>
 	</bean>
