@@ -43,6 +43,7 @@ public class Order implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -55,5 +56,4 @@ public class Order implements Serializable {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-	
 }
