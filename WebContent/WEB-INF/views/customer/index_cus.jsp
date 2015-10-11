@@ -14,7 +14,7 @@
 		List<Item> items = (List<Item>) request.getAttribute("items");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	%>
-		<jsp:include page="navigator.jsp" />
+		<jsp:include page="navigator_cus.jsp" />
 	<div class="content-wrapper" style="margin-left: 0px;">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -46,7 +46,8 @@
 						pageContext.setAttribute("name", item.getName());
 						pageContext.setAttribute("price", item.getPrice());
 						pageContext.setAttribute("modifiedTime", format.format(item.getUpdateTime()));
-				%>
+				%>	
+				 <!-- <form action="/addShoppingCart" method="post"> -->
 				<div class="col-sm-6 col-md-3">
 					<div class="small-box box text-black">
 						<img style="width: 100%;" src="images/defaut-kuma.png" alt="..."
@@ -55,7 +56,9 @@
 						<div class="row">
 						<div class="col-md-12">
 						<div class="col-md-6">
+						<input type="hidden" name="id" value="${_id}">
 							<a href="#" class="text-yellow"><h4>${name}</h4></a>
+							<input type="hidden" name="name" value="${name}">
 							</div>
 							<div class="col-sm-6">
 										<h5>AU$${price}</h5>
@@ -69,20 +72,24 @@
 											<span class="input-group-btn">
 												<button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 											</span>
-											<input type="text" class="form-control text-center" value="1">
+											<input type="text" name="quantity" class="form-control text-center" value="1">							
 											<span class="input-group-btn">
 											<button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 											</span>
 										</div>
 									</div>
 									<div class="col-sm-8" style="padding-top:10px;">
-									<button>AddToShoppingCart</button>
+									<a href="/addShoppingCart?id=${_id}" type="submit" class="btn btn-save">
+									AddToShoppingCart
+									</a>
+									 <!-- <input type="submit" class="btn btn-save" value="AddToShoppingCart"/> -->
 									</div>									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- </form> -->
 				<%
 					}
 				%>

@@ -18,6 +18,13 @@ public class CustomerController {
 	@Autowired
 	CustomerDL customerDL = new CustomerDL();
 	
+	@RequestMapping("login")
+	public ModelAndView LoginInterceptor(HttpServletRequest request) {
+		if(!(request.getSession().getAttribute("customer") == null) && request.getSession().getAttribute("customer") != "") {
+		return new ModelAndView("/customer/index_cus");
+		}
+		return new ModelAndView("/customer/login");
+	}
 	/**
 	 * get username and password from the user interface and pass these two parameters to next layer
 	 * and check if the username and password pair is valid.
@@ -55,7 +62,7 @@ public class CustomerController {
 	 * @param customer
 	 * @return if the customer is valid, to index; if not, to register page.
 	 */
-	@RequestMapping(value = "/registerCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/registerCheck", method = RequestMethod.GET)
 	public ModelAndView register(HttpServletRequest request, Customer customer) {
 		if(customerDL.register(customer)) {
 			HttpSession session = request.getSession();

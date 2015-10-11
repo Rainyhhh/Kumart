@@ -10,9 +10,13 @@ public class ShoppingCartMongo {
 	MongoTemplate mongoTemplate;
 	
 	//Collection name
-	private static String SHOPPINGCART_COLLECTION = "ShoppingCart";
+	private static String ADMIN_COLLECTION = "User";
 	
 	public void addItem(ShoppingCart shoppingCart){
-		mongoTemplate.insert(shoppingCart,SHOPPINGCART_COLLECTION);		
+		mongoTemplate.save(shoppingCart,ADMIN_COLLECTION);		
+	}
+	
+	public void deleteRecord(String item_id){
+		
 	}
 }
