@@ -1,16 +1,24 @@
 package unimelb.edu.au.kumart.domainLogic;
 
+import java.util.Date;
 import java.util.List;
 
 import unimelb.edu.au.kumart.entity.ShoppingCart;
+import unimelb.edu.au.kumart.mongodb.ShoppingCartMongo;
 
 public class ShoppingCartDLImp implements ShoppingCartDL {
-
-	@Override
-	public void addItem(ShoppingCart shoppingCart) {
-		// TODO Auto-generated method stub
+	ShoppingCartMongo shoppingCartMongo;
 	
-	}
+//	@Override
+//	public void addItem(String item_id, String item_name, int quantity) {
+//		ShoppingCart shoppingCart =new ShoppingCart();
+//		shoppingCart.setItem_id(item_id);
+//		shoppingCart.setItem_name(item_name);
+//		shoppingCart.setQuantity(quantity);
+//		shoppingCart.setCreateTime(new Date());
+//		shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
+//		shoppingCartMongo.addItem(shoppingCart);
+//	}
 
 	@Override
 	public void deleteItem(int item_id, int user_id) {
@@ -36,5 +44,12 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 		return null;
 	}
 
+	@Override
+	public void addItem(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		shoppingCart.setCreateTime(new Date());
+		shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
+		shoppingCartMongo.addItem(shoppingCart);
+	}
 	
 }

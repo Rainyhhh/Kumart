@@ -6,6 +6,7 @@ import unimelb.edu.au.kumart.entity.ShoppingCart;
 
 public interface ShoppingCartDL {
 
+//	public void addItem (String item_id,String item_name, int quantity);
 	public void addItem (ShoppingCart shoppingCart);
 	public void deleteItem (int item_id, int user_id);
 	public void updateItem (ShoppingCart shoppingCart); 
