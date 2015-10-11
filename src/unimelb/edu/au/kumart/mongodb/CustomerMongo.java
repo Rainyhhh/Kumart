@@ -15,7 +15,7 @@ public class CustomerMongo {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
-	private static String ADMIN_COLLECTION = "User";
+	private static String CUSTOMER_COLLECTION = "User";
 	
 	/**
 	 * check if the username and password pair is exist in the databse
@@ -32,9 +32,14 @@ public class CustomerMongo {
 		query.addCriteria(criteria1);
 		query.addCriteria(criteria2);
 		Customer user = this.mongoTemplate.findOne(query, Customer.class,
-				ADMIN_COLLECTION);
+				CUSTOMER_COLLECTION);
 		return user;
 
+	}
+	
+	public Customer getCustomer(String user_id) {
+		Customer customer = (Customer) mongoTemplate.findById(user_id, User.class, CUSTOMER_COLLECTION);
+		return customer;
 	}
 	
 	/**

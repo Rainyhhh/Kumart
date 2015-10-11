@@ -15,6 +15,7 @@ public class ShoppingCart implements Serializable{
 	private int quantity;
 	private Date createTime;
 	private Date modifiedTime;
+
 	public String getItem_id() {
 		return item_id;
 	}
@@ -24,6 +25,7 @@ public class ShoppingCart implements Serializable{
 	public int getUser_id() {
 		return user_id;
 	}
+
 	public String getItem_name() {
 		return item_name;
 	}
@@ -31,6 +33,7 @@ public class ShoppingCart implements Serializable{
 		this.item_name = item_name;
 	}
 	public void setUser_id(int user_id) {
+
 		this.user_id = user_id;
 	}
 	public int getQuantity() {
