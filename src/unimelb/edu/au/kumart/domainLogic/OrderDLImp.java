@@ -1,11 +1,17 @@
 package unimelb.edu.au.kumart.domainLogic;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import unimelb.edu.au.kumart.entity.Customer;
+import unimelb.edu.au.kumart.entity.Item;
 import unimelb.edu.au.kumart.entity.Order;
+import unimelb.edu.au.kumart.entity.OrderItem;
+import unimelb.edu.au.kumart.mongodb.CustomerMongo;
+import unimelb.edu.au.kumart.mongodb.ItemMongo;
 import unimelb.edu.au.kumart.mongodb.OrderMongo;
 
 @Service
@@ -13,11 +19,41 @@ public class OrderDLImp implements OrderDL{
 	
 	@Autowired
 	OrderMongo orderMongo = new OrderMongo();
+	
+	@Autowired
+	CustomerMongo customerMongo = new CustomerMongo();
+	
+	@Autowired
+	ItemMongo itemMongo = new ItemMongo();
 
 	@Override
-	public void generateOrder(Order order) {
+	public boolean generateOrder(String username) {
 		// TODO Auto-generated method stub
-		
+		Customer customer = customerMongo.getCustomer(username);
+		for(int i = 0; i < customer.getShoppingCarts().size(); i ++) {
+			int needs = customer.getShoppingCarts().get(i).getQuantity();
+			String item_id = customer.getShoppingCarts().get(i).getItem_id();
+			int quantity = itemMongo.getOneItem(item_id).getNumber();
+			if(needs > quantity) return false;
+		}
+		Order order = new Order();
+		for(int i = 0; i < customer.getShoppingCarts().size(); i ++) {
+			int needs = customer.getShoppingCarts().get(i).getQuantity();
+			String item_id = customer.getShoppingCarts().get(i).getItem_id();
+			Item item = itemMongo.getOneItem(item_id);
+			item.setNumber(item.getNumber() - needs);
+			itemMongo.updateItem(item);
+			OrderItem orderItem = new OrderItem();
+			orderItem.setItem_id(item_id);
+			orderItem.setItem_name(item.getName());
+			orderItem.setQuantity(needs);
+			order.getItemList().add(orderItem);
+		}
+		order.setUser(username);
+		order.setState(0);
+		order.setCreateTime(new Date());
+		order.setModifiedTime(order.getCreateTime());
+		return true;
 	}
 
 	@Override
