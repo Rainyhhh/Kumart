@@ -13,11 +13,10 @@ public class Order implements Serializable {
 	@Id
 	private String order_id;
 	private List<OrderItem> itemList;
-	private String user_id;
+	private String user;
 	private int state;
 	private Date createTime;
 	private Date modifiedTime;
-	
 	
 	public String getOrder_id() {
 		return order_id;
@@ -31,11 +30,11 @@ public class Order implements Serializable {
 	public void setItemList(List<OrderItem> itemList) {
 		this.itemList = itemList;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getUser() {
+		return user;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUser(String user) {
+		this.user = user;
 	}
 	public int getState() {
 		return state;

@@ -6,7 +6,7 @@ import unimelb.edu.au.kumart.entity.Order;
 
 public interface OrderDL {
 
-	public void generateOrder(Order order);
+	public boolean generateOrder(String user_id);
 	
 	public void applyCancellation(String order_id);
 	

@@ -9,21 +9,23 @@ public class ShoppingCart implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int item_id;
-	private int user_id;
+	private String item_id;
+	private String user_id;
 	private int quantity;
 	private Date createTime;
 	private Date modifiedTime;
-	public int getItem_id() {
+	
+	
+	public String getItem_id() {
 		return item_id;
 	}
-	public void setItem_id(int item_id) {
+	public void setItem_id(String item_id) {
 		this.item_id = item_id;
 	}
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public int getQuantity() {

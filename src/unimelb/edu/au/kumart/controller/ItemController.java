@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import unimelb.edu.au.kumart.domainLogic.ItemDL;
 import unimelb.edu.au.kumart.domainLogic.ItemDLImp;
 import unimelb.edu.au.kumart.entity.Item;
 
@@ -19,7 +20,7 @@ import unimelb.edu.au.kumart.entity.Item;
 public class ItemController {
 	
 	@Autowired
-	private ItemDLImp itemService;
+	private ItemDL itemService;
 	
 	/**
 	 * after users input valid values and click "submit" button, this method will be 
@@ -39,7 +40,7 @@ public class ItemController {
 	/**
 	 * when the user click the "add a new item" button, the user interface will redirect to 
 	 * add a new item
-	 * @return addNeeItem page
+	 * @return addNewItem page
 	 */
 	@RequestMapping("/admin_prepareaddItem")
 	public ModelAndView prepareNewItem() {
@@ -122,7 +123,6 @@ public class ItemController {
 	 */
 	@RequestMapping(value = "/admin_search", method = RequestMethod.POST)
 	public ModelAndView search(HttpServletRequest req){
-
 		String query = req.getParameter("query");
 		ModelAndView mav = new ModelAndView("/result");
 		List<Item> list = itemService.searchByName(query);
