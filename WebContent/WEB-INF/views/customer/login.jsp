@@ -20,7 +20,7 @@
         <p class="login-box-msg">Sign in to start your session</p>
         <form action="loginCheck" method="get">
           <div class="form-group has-feedback">
-            <input name="username" type="email" class="form-control" placeholder="Email" required="true"/>
+            <input name="email" type="email" class="form-control" placeholder="Email" required="true"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">

@@ -62,7 +62,7 @@
 						<div class="small-box-footer text-yellow">
 							<div class="row">
 								<div class="col-md-12">
-									<div class="col-md-6">
+									<div class="col-sm-6">
 										<a href="#" class="text-yellow"><h4>${name}</h4></a>
 									</div>
 									<div class="col-sm-6">

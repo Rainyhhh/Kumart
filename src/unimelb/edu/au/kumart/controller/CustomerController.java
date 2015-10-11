@@ -34,7 +34,7 @@ public class CustomerController {
 	 */
 	@RequestMapping(value ="/loginCheck",method=RequestMethod.GET)
 	public ModelAndView loginCheck(HttpServletRequest request) {
-		String username = request.getParameter("username");
+		String username = request.getParameter("email");
 		String password = request.getParameter("password");
 		if(customerDL.login(username, password)) {
 			HttpSession session = request.getSession();
@@ -64,7 +64,9 @@ public class CustomerController {
 	 */
 	@RequestMapping(value = "/registerCheck", method = RequestMethod.GET)
 	public ModelAndView register(HttpServletRequest request, Customer customer) {
+		System.out.println(customer.getEmail());
 		if(customerDL.register(customer)) {
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("customer", customer.getEmail());
 			return new ModelAndView("redirect:/index");			

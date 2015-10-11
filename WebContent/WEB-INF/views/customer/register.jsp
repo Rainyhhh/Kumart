@@ -20,7 +20,7 @@
         <p class="login-box-msg">Sign up to start your session</p>
         <form action="registerCheck" method="get">
           <div class="form-group has-feedback">
-            <input name="username" type="email" class="form-control" placeholder="Email" required="true"/>
+            <input name="email" type="email" class="form-control" placeholder="Email" required="true"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -28,7 +28,7 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="password" type="password" class="form-control" placeholder="Comfirm Password" required="true"/>
+            <input type="password" class="form-control" placeholder="Comfirm Password" required="true"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">

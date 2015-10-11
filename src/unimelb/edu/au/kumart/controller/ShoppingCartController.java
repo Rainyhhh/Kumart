@@ -19,6 +19,7 @@ import unimelb.edu.au.kumart.entity.ShoppingCart;
 public class ShoppingCartController {
 	@Autowired
 	private ItemDLImp itemService;
+	@Autowired
 	private ShoppingCartDLImp shoppingCartDL;
 	
 	@RequestMapping("/index")
@@ -34,13 +35,15 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping(value="/addShoppingCart", method = RequestMethod.POST)
-	public ModelAndView addRecord(ShoppingCart shoppingCart){
+	public ModelAndView addRecord(HttpServletRequest request, ShoppingCart shoppingCart){
 //		String id = request.getParameter("id");
 //		String item_name = request.getParameter("name");
 //		int quantity = Integer.parseInt(request.getParameter("quantity"));
-//		shoppingCartDL.addItem(id, item_name, quantity);
-		shoppingCartDL.addItem(shoppingCart);
-		return new ModelAndView("redirect:/customer/index_cus");
+//		shoppingCartDL.addItem(id, item_name, quantity);		
+		String username = (String) request.getSession().getAttribute("customer");
+		System.out.println(shoppingCart);
+		shoppingCartDL.addItem(username, shoppingCart);
+		return new ModelAndView("redirect:/index");
 	}
 	
 

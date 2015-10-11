@@ -3,10 +3,17 @@ package unimelb.edu.au.kumart.domainLogic;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sun.javafx.binding.StringFormatter;
+
 import unimelb.edu.au.kumart.entity.ShoppingCart;
 import unimelb.edu.au.kumart.mongodb.ShoppingCartMongo;
 
+@Service
 public class ShoppingCartDLImp implements ShoppingCartDL {
+	@Autowired
 	ShoppingCartMongo shoppingCartMongo;
 	
 //	@Override
@@ -45,8 +52,9 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 	}
 
 	@Override
-	public void addItem(ShoppingCart shoppingCart) {
+	public void addItem(String username, ShoppingCart shoppingCart) {
 		// TODO Auto-generated method stub
+		shoppingCart.setUsername(username);
 		shoppingCart.setCreateTime(new Date());
 		shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
 		shoppingCartMongo.addItem(shoppingCart);

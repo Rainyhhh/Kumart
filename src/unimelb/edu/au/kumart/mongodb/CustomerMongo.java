@@ -42,14 +42,16 @@ public class CustomerMongo {
 	 * @param customer
 	 */
 	public void newCustomer(User customer) {
-		mongoTemplate.insert(customer);
+		mongoTemplate.insert(customer, ADMIN_COLLECTION);
 	}
 	
 	public boolean getOneCustomer(String username) {
 		Criteria criteria = Criteria.where("email").is(username);
-		if (null == criteria) {
-			return false;
-		}
-		return true;
+		Query query = new Query();
+		query.addCriteria(criteria);
+		Customer customer = this.mongoTemplate.findOne(query, Customer.class, ADMIN_COLLECTION);
+		if(customer != null)
+			return true;
+		return false;
 	}
 }
