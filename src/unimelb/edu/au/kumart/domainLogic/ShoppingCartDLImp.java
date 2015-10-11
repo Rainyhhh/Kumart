@@ -8,13 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.sun.javafx.binding.StringFormatter;
 
+import unimelb.edu.au.kumart.entity.Customer;
 import unimelb.edu.au.kumart.entity.ShoppingCart;
+import unimelb.edu.au.kumart.mongodb.CustomerMongo;
 import unimelb.edu.au.kumart.mongodb.ShoppingCartMongo;
 
 @Service
 public class ShoppingCartDLImp implements ShoppingCartDL {
 	@Autowired
 	ShoppingCartMongo shoppingCartMongo;
+	@Autowired
+	CustomerMongo customerMongo;
 	
 //	@Override
 //	public void addItem(String item_id, String item_name, int quantity) {
@@ -54,10 +58,23 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 	@Override
 	public void addItem(String username, ShoppingCart shoppingCart) {
 		// TODO Auto-generated method stub
+		Customer customer = customerMongo.getCustomer(username);
+		System.out.println(customer.getShoppingCarts());
+		List<ShoppingCart> shoppingCarts = customer.getShoppingCarts();
+		for(int i=0; i< shoppingCarts.size();i++){
+			if(shoppingCarts.get(i).getItem_id().equals(shoppingCart.getItem_id())){
+				int quantity = shoppingCarts.get(i).getQuantity()+shoppingCart.getQuantity();
+				shoppingCarts.get(i).setQuantity(quantity);	
+				shoppingCarts.get(i).setModifiedTime(new Date());
+				customerMongo.updateCustomer(customer);
+				return;
+			}							
+		}
 		shoppingCart.setUsername(username);
 		shoppingCart.setCreateTime(new Date());
 		shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
-		shoppingCartMongo.addItem(shoppingCart);
+		customer.getShoppingCarts().add(shoppingCart);
+		customerMongo.updateCustomer(customer);
 	}
 	
 }

@@ -2,6 +2,7 @@ package unimelb.edu.au.kumart.domainLogic;
 
 import org.springframework.stereotype.Service;
 
+import unimelb.edu.au.kumart.entity.Customer;
 import unimelb.edu.au.kumart.entity.User;
 
 @Service
@@ -21,5 +22,5 @@ public interface UserDL {
 	 * @param user
 	 * @return if success, return true; otherwise, return false.
 	 */
-	public abstract boolean register(User user);
+	public abstract boolean register(Customer customer);
 }

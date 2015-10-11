@@ -59,4 +59,9 @@ public class CustomerMongo {
 			return true;
 		return false;
 	}
+	
+	public void updateCustomer(Customer customer) {
+		mongoTemplate.save(customer);
+		
+	}
 }

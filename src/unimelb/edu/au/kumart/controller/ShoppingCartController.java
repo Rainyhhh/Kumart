@@ -36,12 +36,12 @@ public class ShoppingCartController {
 	
 	@RequestMapping(value="/addShoppingCart", method = RequestMethod.POST)
 	public ModelAndView addRecord(HttpServletRequest request, ShoppingCart shoppingCart){
-//		String id = request.getParameter("id");
+		String item_id = request.getParameter("item_id");
 //		String item_name = request.getParameter("name");
 //		int quantity = Integer.parseInt(request.getParameter("quantity"));
 //		shoppingCartDL.addItem(id, item_name, quantity);		
 		String username = (String) request.getSession().getAttribute("customer");
-		System.out.println(shoppingCart);
+		shoppingCart.setItem_id(item_id);
 		shoppingCartDL.addItem(username, shoppingCart);
 		return new ModelAndView("redirect:/index");
 	}
