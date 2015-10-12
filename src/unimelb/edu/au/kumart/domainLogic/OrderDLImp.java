@@ -84,7 +84,7 @@ public class OrderDLImp implements OrderDL{
 	@Override
 	public List<Order> getOrderList(String user_id) {
 		// TODO Auto-generated method stub
-		List<Order> list = orderMongo.getOrderList("user_id", user_id);
+		List<Order> list = orderMongo.getOrderList("email", user_id);
 		return list;
 	}
 
