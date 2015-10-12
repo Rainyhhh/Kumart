@@ -13,6 +13,7 @@ public class ShoppingCart implements Serializable{
 	private String item_name;
 	private String username;
 	private int quantity;
+	private int price;
 	private Date createTime;
 	private Date modifiedTime;
 	public String getItem_id() {
@@ -38,6 +39,12 @@ public class ShoppingCart implements Serializable{
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public Date getCreateTime() {
 		return createTime;

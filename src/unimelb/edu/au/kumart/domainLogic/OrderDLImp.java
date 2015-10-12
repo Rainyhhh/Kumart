@@ -48,6 +48,7 @@ public class OrderDLImp implements OrderDL{
 			OrderItem orderItem = new OrderItem();
 			orderItem.setItem_id(item_id);
 			orderItem.setItem_name(item.getName());
+			orderItem.setPrice(item.getPrice());
 			orderItem.setQuantity(needs);
 			order.getItemList().add(orderItem);
 		}

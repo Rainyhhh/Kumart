@@ -44,8 +44,7 @@
 					for (Item item : items) {
 						pageContext.setAttribute("_id", item.get_id());
 						pageContext.setAttribute("name", item.getName());
-						pageContext.setAttribute("price", item.getPrice());
-						//pageContext.setAttribute("modifiedTime", format.format(item.getUpdateTime()));
+						pageContext.setAttribute("price", item.getPrice());						
 				%>
 				<form action="/Kumart/addShoppingCart" method="post">
 					<div class="col-sm-6 col-md-3">
@@ -56,12 +55,13 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="col-sm-6">
-											<input type="hidden" name="item_id" value="${_id}"> <a
-												href="#" class="text-yellow"><h4>${name}</h4></a> <input
+											<input type="hidden" name="item_id" value="${_id}"> 											
+											<a href="#" class="text-yellow"><h4>${name}</h4></a> <input
 												type="hidden" name="item_name" value="${name}">
 										</div>
 										<div class="col-sm-6">
 											<h5>AU$${price}</h5>
+											<input type="hidden" name="price" value="${price}">
 										</div>
 									</div>
 								</div>
@@ -75,7 +75,7 @@
 													</button>
 												</span> -->
 												 <input type="number" name="quantity"
-													class="form-control text-center" value="1"/> 
+													class="form-control text-center" min="1" value="1"/> 
 													<!-- <span class="input-group-btn">
 													<button class="btn btn-default" data-dir="up">
 														<span class="glyphicon glyphicon-plus"></span>

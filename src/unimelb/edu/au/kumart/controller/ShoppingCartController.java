@@ -22,7 +22,7 @@ public class ShoppingCartController {
 	@Autowired
 	private ShoppingCartDLImp shoppingCartDL;
 	
-	@RequestMapping("/index")
+	@RequestMapping ("/index")
 	public ModelAndView getItemList(){
 		ModelAndView mav = new ModelAndView("/customer/index_cus");
 		List<Item> list = itemService.getItemList();
@@ -34,18 +34,28 @@ public class ShoppingCartController {
 		return null;
 	}
 	
-	@RequestMapping(value="/addShoppingCart", method = RequestMethod.POST)
+	@RequestMapping (value="/addShoppingCart", method = RequestMethod.POST)
 	public ModelAndView addRecord(HttpServletRequest request, ShoppingCart shoppingCart){
 		String item_id = request.getParameter("item_id");
-//		String item_name = request.getParameter("name");
-//		int quantity = Integer.parseInt(request.getParameter("quantity"));
-//		shoppingCartDL.addItem(id, item_name, quantity);		
+		int price = Integer.parseInt(request.getParameter("price"));
 		String username = (String) request.getSession().getAttribute("customer");
 		System.out.println(item_id);
 		shoppingCart.setItem_id(item_id);
+		shoppingCart.setPrice(price);
 		shoppingCartDL.addItem(username, shoppingCart);
 		return new ModelAndView("redirect:/index");
 	}
 	
+	@RequestMapping ("/shoppingCart")
+	public ModelAndView showShopppingCart(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("customer/shoppingCart");
+		String customer = request.getSession().getAttribute("customer").toString();
+		List<ShoppingCart> shoppingCarts = shoppingCartDL.getShoppingCart(customer);
+		if(shoppingCarts!= null){
+			mav.addObject("shoppingCarts", shoppingCarts);
+			return mav;
+		}
+		return null;
+	}
 
 }

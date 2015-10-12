@@ -21,17 +21,6 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 	@Autowired
 	CustomerMongo customerMongo;
 
-	// @Override
-	// public void addItem(String item_id, String item_name, int quantity) {
-	// ShoppingCart shoppingCart =new ShoppingCart();
-	// shoppingCart.setItem_id(item_id);
-	// shoppingCart.setItem_name(item_name);
-	// shoppingCart.setQuantity(quantity);
-	// shoppingCart.setCreateTime(new Date());
-	// shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
-	// shoppingCartMongo.addItem(shoppingCart);
-	// }
-
 	@Override
 	public void deleteItem(int item_id, int user_id) {
 		// TODO Auto-generated method stub
@@ -45,9 +34,11 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 	}
 
 	@Override
-	public List<ShoppingCart> getShoppingCart() {
+	public List<ShoppingCart> getShoppingCart(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		Customer customer = customerMongo.getCustomer(username);
+		List<ShoppingCart> shoppingCarts = customer.getShoppingCarts();
+		return shoppingCarts;
 	}
 
 	@Override

@@ -18,7 +18,14 @@
 							&& request.getSession().getAttribute("customer") != "") {
 				%>
 				<!-- User Account: style can be found in dropdown.less -->
-				<li class="dropdown user user-menu"><a class="dropdown-toggle"
+				<li>
+				<a href="/Kumart/shoppingCart"><span>My ShoppingCart</span></a>
+				</li>
+				<li>
+				<a href="/Kumart/order"><span>My Order</span></a>
+				</li>
+				<li class="dropdown user user-menu">
+				<a class="dropdown-toggle"
 					data-toggle="dropdown" style="cursor: pointer"> <img
 						src="images/man-icon.png" class="user-image" alt="User Image" />
 						<span class="hidden-xs">${customer}</span>

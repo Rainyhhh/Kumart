@@ -12,6 +12,6 @@ public interface ShoppingCartDL {
 	public void addItem (String username, ShoppingCart shoppingCart);
 	public void deleteItem (int item_id, int user_id);
 	public void updateItem (ShoppingCart shoppingCart); 
-	public List<ShoppingCart> getShoppingCart();
+	public List<ShoppingCart> getShoppingCart(String username);
 	public ShoppingCart getOneItem (int id);
 }

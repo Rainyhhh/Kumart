@@ -4,6 +4,7 @@ public class OrderItem {
 
 	private String item_id;
 	private String item_name;
+	private int price;
 	private int quantity;
 	
 	public String getItem_id() {
@@ -17,6 +18,12 @@ public class OrderItem {
 	}
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
+	}	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public int getQuantity() {
 		return quantity;
