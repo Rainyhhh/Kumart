@@ -26,7 +26,7 @@ public class OrderController {
 	 */
 	@RequestMapping("/myOrders")
 	public ModelAndView getOrderList(HttpServletRequest request) {
-		ModelAndView maView = new ModelAndView("/customer/myOrders");
+		ModelAndView maView = new ModelAndView("/customer/order");
 		String username = (String) request.getSession().getAttribute("customer");
 		List<Order> list = orderDL.getOrderList(username);
 		maView.addObject("orderList", list);

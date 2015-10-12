@@ -26,7 +26,13 @@ public class ShoppingCartMongo {
 		mongoTemplate.upsert(query, update, Customer.class, ADMIN_COLLECTION);				
 	}
 	
-	public void deleteRecord(String item_id){
-		
+	public void deleteRecord(String username, String item_id){
+		Criteria criteria = Criteria.where("email").is(username).and("shoppingCarts._id").is(item_id);
+		System.out.println("22222222");
+		Query query = new Query(criteria);
+		Update update = new Update();
+		update.unset("shoppingCarts.$");
+		System.out.println("333333333");
+		mongoTemplate.updateFirst(query, update, Customer.class,ADMIN_COLLECTION);
 	}
 }

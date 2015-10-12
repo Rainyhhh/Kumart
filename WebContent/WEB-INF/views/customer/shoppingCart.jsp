@@ -16,6 +16,7 @@
 </head>
 <%
 List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) request.getAttribute("shoppingCarts");
+String totalPrice = request.getAttribute("totalPrice").toString();
 %>
 <body class="skin-yellow sidebar-mini">
 <jsp:include page="navigator_cus.jsp" />
@@ -23,15 +24,7 @@ List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) request.getAttribute("sh
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">My Shopping Cart</h3>
-                  <div class="box-tools">
-                    <div class="input-group">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
+                  <h3 class="box-title">My Shopping Cart</h3>                 
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -47,20 +40,24 @@ List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) request.getAttribute("sh
             	 pageContext.setAttribute("item_id", shoppingCart.getItem_id());
             	 pageContext.setAttribute("quantity", shoppingCart.getQuantity());
             	 pageContext.setAttribute("price", shoppingCart.getPrice());
+            	 pageContext.setAttribute("totalPrice", totalPrice);
              %>
                     <tr>             
                       <td>${item}</td>
                       <td>${quantity}</td>
                       <td>${price}</td>
-                      <td><a href="/Kumart/deleteRecord"><span>Delete</span></a></td>                     
+                      <td><a href="/Kumart/deleteRecord?item_id=${item_id}"><span>Delete</span></a></td>                     
                     </tr>
                     <%
              }
                     %>
-                  </table>                
+                  </table>                              
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-               <a class="btn btn-default col-md-offset-9" href="/Kumart/order"><span>Payment</span></a>
+              <div class="row">
+               <p class="col-md-offset-5 col-md-4">Total Price:${totalPrice}</p>  
+               <a class="btn btn-default col-md-2" href="/Kumart/order"><span>Payment</span></a>
+               </div>
             </div>
           </div>
 </body>

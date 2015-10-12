@@ -22,7 +22,7 @@
 				<a href="/Kumart/shoppingCart"><span>My ShoppingCart</span></a>
 				</li>
 				<li>
-				<a href="/Kumart/order"><span>My Order</span></a>
+				<a href="/Kumart/myOrders"><span>My Order</span></a>
 				</li>
 				<li class="dropdown user user-menu">
 				<a class="dropdown-toggle"

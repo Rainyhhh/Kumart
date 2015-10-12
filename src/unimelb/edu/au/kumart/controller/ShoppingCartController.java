@@ -50,12 +50,23 @@ public class ShoppingCartController {
 	public ModelAndView showShopppingCart(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("customer/shoppingCart");
 		String customer = request.getSession().getAttribute("customer").toString();
+		int totalPrice = shoppingCartDL.totalPrice(customer);
 		List<ShoppingCart> shoppingCarts = shoppingCartDL.getShoppingCart(customer);
 		if(shoppingCarts!= null){
 			mav.addObject("shoppingCarts", shoppingCarts);
+			mav.addObject("totalPrice",totalPrice);
 			return mav;
 		}
 		return null;
+	}
+	
+	@RequestMapping (value = "/deleteRecord", method = RequestMethod.GET)
+	public ModelAndView deleteRecord(HttpServletRequest request){
+		String item_id = request.getParameter("item_id").toString();
+		System.out.println(item_id);
+		String username = request.getSession().getAttribute("customer").toString();
+		shoppingCartDL.deleteItem(item_id, username);
+		return new ModelAndView("redirect:/shoppingCart");
 	}
 
 }
