@@ -59,8 +59,11 @@
 					<!-- /.box-body -->
 				</div>
 				<!-- /.box -->
-				<a class="btn btn-default col-md-offset-9"
-					href="/Kumart/generateOrder">Payment</a>
+				<div class="row">
+					<p class="col-md-offset-5 col-md-4">Total Price:${totalPrice}</p>
+					<a class="btn btn-default col-md-offset-9"
+						href="/Kumart/generateOrder">Payment</a>
+				</div>
 			</div>
 		</div>
 		</section>

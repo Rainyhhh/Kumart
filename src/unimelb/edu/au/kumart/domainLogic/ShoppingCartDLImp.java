@@ -79,5 +79,15 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 			//shoppingCartMongo.addItem(shoppingCart);
 		}
 	}
+	
+	public int totalPrice(String username){
+		int totalPrice = 0;
+		Customer customer = customerMongo.getCustomer(username);
+		List<ShoppingCart> shoppingCarts = customer.getShoppingCarts();
+		for (int i = 0; i < shoppingCarts.size(); i++) {
+			totalPrice+=shoppingCarts.get(i).getPrice()*shoppingCarts.get(i).getQuantity();
+		}		
+		return totalPrice;
+	}
 
 }
