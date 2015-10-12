@@ -39,7 +39,6 @@ public class ShoppingCartController {
 		String item_id = request.getParameter("item_id");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String username = (String) request.getSession().getAttribute("customer");
-		System.out.println(item_id);
 		shoppingCart.setItem_id(item_id);
 		shoppingCart.setPrice(price);
 		shoppingCartDL.addItem(username, shoppingCart);
@@ -63,7 +62,6 @@ public class ShoppingCartController {
 	@RequestMapping (value = "/deleteRecord", method = RequestMethod.GET)
 	public ModelAndView deleteRecord(HttpServletRequest request){
 		String item_id = request.getParameter("item_id").toString();
-		System.out.println(item_id);
 		String username = request.getSession().getAttribute("customer").toString();
 		shoppingCartDL.deleteItem(item_id, username);
 		return new ModelAndView("redirect:/shoppingCart");
