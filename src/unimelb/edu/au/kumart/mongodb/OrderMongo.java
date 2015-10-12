@@ -48,7 +48,7 @@ public class OrderMongo {
 	 */
 	public List<Order> getOrderList(String type, String value) {
 		Query query = new Query(Criteria.where(type).is(value));
-		if(type.equals("user_id")) {
+		if(type.equals("email")) {
 			query.with(new Sort(Direction.DESC, "modifiedTime"));
 		}
 		else if(type.equals("state")) {

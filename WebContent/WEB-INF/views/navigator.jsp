@@ -13,6 +13,7 @@
 	<nav class="navbar navbar-static-top" role="navigation">
 		<div class="navbar-custom-menu" style="margin-right: 5%;">
 			<ul class="nav navbar-nav">
+			    <li><a href="/Kumart/admin_orders">Cancellation applications</a></li>
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu"><a class="dropdown-toggle"
 					data-toggle="dropdown" style="cursor: pointer"> <img

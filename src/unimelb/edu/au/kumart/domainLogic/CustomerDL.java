@@ -34,8 +34,8 @@ public class CustomerDL implements UserDL{
 		if(customerMongo.getOneCustomer(customer.getEmail())) {
 			return false;
 		}
-//		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
-//		customer.setShoppingCarts(list);
+		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+		customer.setShoppingCarts(list);
 		customer.setRole("Customer");
 		customer.setCreateTime(new Date());
 		customer.setModifiedTime(customer.getCreateTime());
