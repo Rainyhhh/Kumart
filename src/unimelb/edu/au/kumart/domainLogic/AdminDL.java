@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import unimelb.edu.au.kumart.entity.Admin;
+import unimelb.edu.au.kumart.entity.Customer;
 import unimelb.edu.au.kumart.entity.User;
 import unimelb.edu.au.kumart.mongodb.AdminMongo;
 
@@ -28,7 +29,7 @@ public class AdminDL implements UserDL{
 	}
 
 	@Override
-	public boolean register(User user) {
+	public boolean register(Customer user) {
 		// TODO Auto-generated method stub
 		return false;
 	}

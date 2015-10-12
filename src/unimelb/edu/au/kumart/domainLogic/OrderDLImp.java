@@ -1,5 +1,6 @@
 package unimelb.edu.au.kumart.domainLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import unimelb.edu.au.kumart.entity.Customer;
 import unimelb.edu.au.kumart.entity.Item;
 import unimelb.edu.au.kumart.entity.Order;
 import unimelb.edu.au.kumart.entity.OrderItem;
+import unimelb.edu.au.kumart.entity.ShoppingCart;
 import unimelb.edu.au.kumart.mongodb.CustomerMongo;
 import unimelb.edu.au.kumart.mongodb.ItemMongo;
 import unimelb.edu.au.kumart.mongodb.OrderMongo;
@@ -53,6 +55,10 @@ public class OrderDLImp implements OrderDL{
 		order.setState(0);
 		order.setCreateTime(new Date());
 		order.setModifiedTime(order.getCreateTime());
+		orderMongo.generateOrder(order);
+		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+		customer.setShoppingCarts(list);
+		customerMongo.updateCustomer(customer);
 		return true;
 	}
 

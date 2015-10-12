@@ -41,6 +41,7 @@ public class ShoppingCartController {
 //		int quantity = Integer.parseInt(request.getParameter("quantity"));
 //		shoppingCartDL.addItem(id, item_name, quantity);		
 		String username = (String) request.getSession().getAttribute("customer");
+		System.out.println(item_id);
 		shoppingCart.setItem_id(item_id);
 		shoppingCartDL.addItem(username, shoppingCart);
 		return new ModelAndView("redirect:/index");

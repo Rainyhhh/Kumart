@@ -30,14 +30,12 @@ public class CustomerDL implements UserDL{
 
 	@Override
 	public boolean register(Customer customer) {
-		System.out.println("111111113333");
 		// TODO Auto-generated method stub
 		if(customerMongo.getOneCustomer(customer.getEmail())) {
-			System.out.println("111111112222");
 			return false;
 		}
-		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
-		customer.setShoppingCarts(list);
+//		List<ShoppingCart> list = new ArrayList<ShoppingCart>();
+//		customer.setShoppingCarts(list);
 		customer.setRole("Customer");
 		customer.setCreateTime(new Date());
 		customer.setModifiedTime(customer.getCreateTime());

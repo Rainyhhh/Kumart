@@ -37,8 +37,11 @@ public class CustomerMongo {
 
 	}
 	
-	public Customer getCustomer(String user_id) {
-		Customer customer = (Customer) mongoTemplate.findById(user_id, User.class, CUSTOMER_COLLECTION);
+	public Customer getCustomer(String username) {
+		Query query = new Query();
+		Criteria criteria = Criteria.where("email").is(username);
+		query.addCriteria(criteria);
+		Customer customer = (Customer) mongoTemplate.findOne(query, User.class, CUSTOMER_COLLECTION);
 		return customer;
 	}
 	
@@ -61,7 +64,7 @@ public class CustomerMongo {
 	}
 	
 	public void updateCustomer(Customer customer) {
-		mongoTemplate.save(customer);
+		mongoTemplate.save(customer, CUSTOMER_COLLECTION);
 		
 	}
 }
