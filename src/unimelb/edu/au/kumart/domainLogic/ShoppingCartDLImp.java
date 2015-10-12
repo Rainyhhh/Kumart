@@ -22,10 +22,9 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 	CustomerMongo customerMongo;
 
 	@Override
-	public void deleteItem (String item_id, String username) {
+	public void deleteItem(String item_id, String username) {
 		// TODO Auto-generated method stub
-		shoppingCartMongo.deleteRecord(username,item_id);
-		System.out.println("1111111000000");
+		shoppingCartMongo.deleteRecord(username, item_id);
 	}
 
 	@Override
@@ -79,7 +78,7 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 			customerMongo.updateCustomer(customer);
 			//shoppingCartMongo.addItem(shoppingCart);
 		}
-	} 
+	}
 	
 	public int totalPrice(String username){
 		int totalPrice = 0;

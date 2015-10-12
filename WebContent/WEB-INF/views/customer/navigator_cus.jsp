@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <header class="main-header">
 	<!-- Logo -->
-	<a ui-sref="home" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="/Kumart/index" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>Ku</b>Ma</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>Ku</b>Mart</span>
 	</a>

@@ -1,6 +1,7 @@
 package unimelb.edu.au.kumart.mongodb;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import unimelb.edu.au.kumart.entity.Order;
 
@@ -48,7 +51,7 @@ public class OrderMongo {
 	 */
 	public List<Order> getOrderList(String type, String value) {
 		Query query = new Query(Criteria.where(type).is(value));
-		if(type.equals("email")) {
+		if(type.equals("user")) {
 			query.with(new Sort(Direction.DESC, "modifiedTime"));
 		}
 		else if(type.equals("state")) {
@@ -77,9 +80,11 @@ public class OrderMongo {
 	 */
 	public boolean updateOrderState(String order_id, int state) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("order_id").is(order_id));		
+		query.addCriteria(Criteria.where("_id").is(order_id));		
 		Update update = new Update();
-		update.set("state", state);		
+		update.set("state", state);	
+		update.set("modifiedTime", new Date());
+		mongoTemplate.updateFirst(query, update, Order.class, ORDER_COLLECTION);
 		return true;
 	}
 	

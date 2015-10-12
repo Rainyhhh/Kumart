@@ -10,7 +10,6 @@ public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
 	private String order_id;
 	private List<OrderItem> itemList;
 	private String user;
