@@ -45,7 +45,7 @@
 						pageContext.setAttribute("_id", item.get_id());
 						pageContext.setAttribute("name", item.getName());
 						pageContext.setAttribute("price", item.getPrice());
-						pageContext.setAttribute("modifiedTime", format.format(item.getUpdateTime()));
+						//pageContext.setAttribute("modifiedTime", format.format(item.getUpdateTime()));
 				%>
 				<form action="/Kumart/addShoppingCart" method="post">
 					<div class="col-sm-6 col-md-3">
