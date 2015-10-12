@@ -39,6 +39,7 @@ public class OrderDLImp implements OrderDL{
 			if(needs > quantity) return false;
 		}
 		Order order = new Order();
+		order.setItemList(new ArrayList<OrderItem>());
 		for(int i = 0; i < customer.getShoppingCarts().size(); i ++) {
 			int needs = customer.getShoppingCarts().get(i).getQuantity();
 			String item_id = customer.getShoppingCarts().get(i).getItem_id();
@@ -84,7 +85,7 @@ public class OrderDLImp implements OrderDL{
 	@Override
 	public List<Order> getOrderList(String user_id) {
 		// TODO Auto-generated method stub
-		List<Order> list = orderMongo.getOrderList("email", user_id);
+		List<Order> list = orderMongo.getOrderList("user", user_id);
 		return list;
 	}
 

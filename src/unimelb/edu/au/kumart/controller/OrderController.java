@@ -26,7 +26,7 @@ public class OrderController {
 	 */
 	@RequestMapping("/myOrders")
 	public ModelAndView getOrderList(HttpServletRequest request) {
-		ModelAndView maView = new ModelAndView("/customer/myOrders");
+		ModelAndView maView = new ModelAndView("/customer/order");
 		String username = (String) request.getSession().getAttribute("customer");
 		List<Order> list = orderDL.getOrderList(username);
 		maView.addObject("orderList", list);
@@ -42,7 +42,7 @@ public class OrderController {
 	public ModelAndView applyCancellation(HttpServletRequest request) {
 		String order_id = request.getParameter("order_id");
 		orderDL.applyCancellation(order_id);
-		return new ModelAndView("redirect: /myOrders");
+		return new ModelAndView("redirect:myOrders");
 	}
 	
 	/**
@@ -66,9 +66,19 @@ public class OrderController {
 	public ModelAndView approveCancellation(HttpServletRequest request) {
 		String order_id = request.getParameter("order_id");
 		orderDL.applyCancellation(order_id);
-		return new ModelAndView("redirect: admin_orders");
+		return new ModelAndView("redirect:admin_orders");
 	}
 	
-	
+	/**
+	 * generate a new order for the user
+	 * @param request
+	 * @return order list page
+	 */
+	@RequestMapping("/generateOrder")
+	public ModelAndView generateOrder(HttpServletRequest request) {
+		String username = (String) request.getSession().getAttribute("customer");
+		orderDL.generateOrder(username);
+		return new ModelAndView("redirect:myOrders");
+	}
 	
 }

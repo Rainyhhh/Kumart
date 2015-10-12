@@ -1,7 +1,8 @@
 <%@page import="unimelb.edu.au.kumart.entity.ShoppingCart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="unimelb.edu.au.kumart.entity.Order"%>
 <%@ page import="unimelb.edu.au.kumart.entity.OrderItem"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,57 +17,102 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <%
-Order order = (Order) request.getAttribute("order");
-List<OrderItem> orderItems = order.getItemList();
-pageContext.setAttribute("id", order.getOrder_id());
+	List<Order> list = (List<Order>) request.getAttribute("orderList");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 <body class="skin-yellow sidebar-mini">
-<jsp:include page="navigator_cus.jsp" />
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">My order OrderID:${id}</h3>
-                  <div class="box-tools">
-                    <div class="input-group">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tr>
-                      <th>Item</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                    </tr>
-                    <%
-             for(OrderItem orderItem: orderItems){
-            	 pageContext.setAttribute("item", orderItem.getItem_name());
-            	 pageContext.setAttribute("quantity", orderItem.getQuantity());
-            	 pageContext.setAttribute("price",orderItem.getPrice());
-             %>
-                    <tr>             
-                      <td>${item}</td>
-                      <td>${quantity}</td>
-                      <td>${price}</td>                                         
-                    </tr>
-                    <%
-             }
-                    %>
-                  </table> 
-                  <%
-                  %>
-                  <span> </span>
-                  <% 
-                  %>               
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-               <a class="btn btn-default col-md-offset-9" href="/Kumart/index"><span>Ok</span></a>
-            </div>
-          </div>
+	<jsp:include page="navigator_cus.jsp" />
+	<div class="content-wrapper" style="margin-left: 0px;">
+		<!-- Content Header (Page header) -->
+		<section  class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">My orders</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover">
+							<tr>
+								<th>Order ID</th>
+								<th>Items</th>
+								<th>Quantity</th>
+								<th>Price</th>
+								<th>Update Date</th>
+								<th>State</th>
+							</tr>
+							<%
+								for (Order order : list) {
+							%>
+							<tr>
+								<td><%=order.getOrder_id()%></td>
+								<td>
+									<%
+										for (OrderItem item : order.getItemList()) {
+									%>
+									<p><%=item.getItem_name()%></p> <%
+ 	}
+ %>
+								</td>
+								<td>
+									<%
+										for (OrderItem item : order.getItemList()) {
+									%>
+									<p><%=item.getQuantity()%></p> <%
+ 	}
+ %>
+								</td>
+								<td>
+									<%
+										for (OrderItem item : order.getItemList()) {
+									%>
+									<p><%=item.getPrice()%></p> <%
+ 	}
+ %>
+								</td>
+								<td><%=format.format(order.getModifiedTime())%></td>
+								<%
+									if (order.getState() == 0) {
+								%>
+								<td><a
+									href="/Kumart/applyCancellation?order_id=<%=order.getOrder_id()%>">Apply
+										Cancellation</a></td>
+								<%
+									}
+								%>
+								<%
+									if (order.getState() == 1) {
+								%>
+								<td>Cancellation Processing</td>
+								<%
+									}
+								%>
+								<%
+									if (order.getState() == 2) {
+								%>
+								<td>Cancellation Approved</td>
+								<%
+									}
+								%>
+							</tr>
+							<%
+								}
+							%>
+						</table>
+						<%
+							
+						%>
+						<span> </span>
+						<%
+							
+						%>
+					</div>
+					<!-- /.box-body -->
+				</div>
+			</div>
+		</div>
+		</section>
+	</div>
 </body>
 </html>

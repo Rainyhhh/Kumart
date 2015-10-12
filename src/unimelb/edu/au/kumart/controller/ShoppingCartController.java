@@ -57,5 +57,14 @@ public class ShoppingCartController {
 		}
 		return null;
 	}
+	
+	@RequestMapping (value = "/deleteRecord", method = RequestMethod.GET)
+	public ModelAndView deleteRecord(HttpServletRequest request){
+		String item_id = request.getParameter("item_id").toString();
+		System.out.println(item_id);
+		String username = request.getSession().getAttribute("customer").toString();
+		shoppingCartDL.deleteItem(item_id, username);
+		return new ModelAndView("redirect:/shoppingCart");
+	}
 
 }
