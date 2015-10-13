@@ -18,9 +18,10 @@ public class OrderController {
 
 	@Autowired
 	OrderDLImp orderDL = new OrderDLImp();
-	
+
 	/**
 	 * show a list of orders of users
+	 * 
 	 * @param request
 	 * @return myOrders page
 	 */
@@ -32,9 +33,10 @@ public class OrderController {
 		maView.addObject("orderList", list);
 		return maView;
 	}
-	
+
 	/**
 	 * apply for the cancellation of an order
+	 * 
 	 * @param request
 	 * @return myOrders page
 	 */
@@ -44,21 +46,23 @@ public class OrderController {
 		orderDL.applyCancellation(order_id);
 		return new ModelAndView("redirect:myOrders");
 	}
-	
+
 	/**
 	 * show a list of orders that are waiting to be approved
+	 * 
 	 * @return waiting orders page
 	 */
-	@RequestMapping("/admin_orders") 
+	@RequestMapping("/admin_orders")
 	public ModelAndView getWaitingOrders() {
 		ModelAndView mavAndView = new ModelAndView("/handleOrder");
 		List<Order> list = orderDL.getWaitToCancelOrders();
 		mavAndView.addObject("orderList", list);
 		return mavAndView;
 	}
-	
+
 	/**
 	 * approve the cancellations
+	 * 
 	 * @param request
 	 * @return waiting orders page
 	 */
@@ -69,17 +73,5 @@ public class OrderController {
 		orderDL.handleCancellation(order_id);
 		return new ModelAndView("redirect:admin_orders");
 	}
-	
-	/**
-	 * generate a new order for the user
-	 * @param request
-	 * @return order list page
-	 */
-	@RequestMapping("/generateOrder")
-	public ModelAndView generateOrder(HttpServletRequest request) {
-		String username = (String) request.getSession().getAttribute("customer");
-		orderDL.generateOrder(username);
-		return new ModelAndView("redirect:myOrders");
-	}
-	
+
 }

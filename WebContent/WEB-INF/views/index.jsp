@@ -82,7 +82,7 @@
 								<div class="col-md-12">
 									<div class="col-sm-6">
 										<h5>AU$${price}</h5>
-										<span>Max:${quantity}</span>
+										<span>Quantity:${quantity}</span>
 									</div>
 									<div class="col-sm-6" style="padding-top: 10px;">
 										<p style="font-size: 13px; color: black;">${modifiedTime}</p>

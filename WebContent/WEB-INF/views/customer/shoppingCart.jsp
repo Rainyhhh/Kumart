@@ -41,8 +41,7 @@
 								for (ShoppingCart shoppingCart : shoppingCarts) {
 									pageContext.setAttribute("item", shoppingCart.getItem_name());
 									pageContext.setAttribute("item_id", shoppingCart.getItem_id());
-									pageContext
-											.setAttribute("quantity", shoppingCart.getQuantity());
+									pageContext.setAttribute("quantity", shoppingCart.getQuantity());
 									pageContext.setAttribute("price", shoppingCart.getPrice());
 							%>
 							<tr>
@@ -64,6 +63,7 @@
 					<a class="btn btn-default col-md-1"
 						href="/Kumart/generateOrder">Payment</a>
 				</div>
+				<span style="color: red;">${error }</span>
 			</div>
 		</div>
 		</section>

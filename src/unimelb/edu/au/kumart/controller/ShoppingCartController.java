@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import unimelb.edu.au.kumart.domainLogic.ItemDLImp;
+import unimelb.edu.au.kumart.domainLogic.OrderDLImp;
 import unimelb.edu.au.kumart.domainLogic.ShoppingCartDLImp;
 import unimelb.edu.au.kumart.entity.Item;
 import unimelb.edu.au.kumart.entity.ShoppingCart;
@@ -21,6 +22,9 @@ public class ShoppingCartController {
 	private ItemDLImp itemService;
 	@Autowired
 	private ShoppingCartDLImp shoppingCartDL;
+	
+	@Autowired
+	private OrderDLImp orderDL;
 	
 	@RequestMapping (value="/addShoppingCart", method = RequestMethod.POST)
 	public ModelAndView addRecord(HttpServletRequest request, ShoppingCart shoppingCart){
@@ -54,5 +58,24 @@ public class ShoppingCartController {
 		shoppingCartDL.deleteItem(item_id, username);
 		return new ModelAndView("redirect:/shoppingCart");
 	}
+	
+	/**
+	 * generate a new order for the user
+	 * 
+	 * @param request
+	 * @return order list page
+	 */
+	@RequestMapping("/generateOrder")
+	public ModelAndView generateOrder(HttpServletRequest request) {
+		String username = (String) request.getSession().getAttribute("customer");
+		if (orderDL.generateOrder(username)) {
+			return new ModelAndView("redirect:myOrders");
+		}
+		else {
+			request.setAttribute("error", "Quantity of some items may be not enough!");
+			return showShopppingCart(request);
+		}
+	}
+
 
 }
