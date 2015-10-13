@@ -23,7 +23,7 @@
 		</h1>
 		<div class="row">
 			<div class="col-sm-offset-8 col-sm-3">
-				<form action="/Kumart/search" method="post">
+				<form action="/Kumart/index" method="get">
 					<div class="input-group">
 						<input type="text" class="form-control" name="query"
 							placeholder="Search by name ..."> <span
@@ -44,7 +44,8 @@
 					for (Item item : items) {
 						pageContext.setAttribute("_id", item.get_id());
 						pageContext.setAttribute("name", item.getName());
-						pageContext.setAttribute("price", item.getPrice());						
+						pageContext.setAttribute("price", item.getPrice());	
+						pageContext.setAttribute("quantity", item.getNumber());
 				%>
 				<form action="/Kumart/addShoppingCart" method="post">
 					<div class="col-sm-6 col-md-3">
@@ -76,6 +77,7 @@
 												</span> -->
 												 <input type="number" name="quantity"
 													class="form-control text-center" min="1" value="1"/> 
+													<span>Max:${quantity}</span>
 													<!-- <span class="input-group-btn">
 													<button class="btn btn-default" data-dir="up">
 														<span class="glyphicon glyphicon-plus"></span>

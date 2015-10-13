@@ -53,6 +53,7 @@
 						pageContext.setAttribute("_id", item.get_id());
 						pageContext.setAttribute("name", item.getName());
 						pageContext.setAttribute("price", item.getPrice());
+						pageContext.setAttribute("quantity", item.getNumber());
 						pageContext.setAttribute("modifiedTime", format.format(item.getUpdateTime()));
 				%>
 				<div class="col-sm-6 col-md-3">
@@ -81,6 +82,7 @@
 								<div class="col-md-12">
 									<div class="col-sm-6">
 										<h5>AU$${price}</h5>
+										<span>Max:${quantity}</span>
 									</div>
 									<div class="col-sm-6" style="padding-top: 10px;">
 										<p style="font-size: 13px; color: black;">${modifiedTime}</p>

@@ -22,18 +22,6 @@ public class ShoppingCartController {
 	@Autowired
 	private ShoppingCartDLImp shoppingCartDL;
 	
-	@RequestMapping ("/index")
-	public ModelAndView getItemList(){
-		ModelAndView mav = new ModelAndView("/customer/index_cus");
-		List<Item> list = itemService.getItemList();
-		// double check if the list is not null
-		if(list!= null){
-			mav.addObject("items",list);
-			return mav;
-		}
-		return null;
-	}
-	
 	@RequestMapping (value="/addShoppingCart", method = RequestMethod.POST)
 	public ModelAndView addRecord(HttpServletRequest request, ShoppingCart shoppingCart){
 		String item_id = request.getParameter("item_id");

@@ -21,7 +21,7 @@
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 <body class="skin-yellow sidebar-mini">
-	<jsp:include page="navigator_cus.jsp" />
+	<jsp:include page="navigator.jsp" />
 	<div class="content-wrapper" style="margin-left: 0px;">
 		<!-- Content Header (Page header) -->
 		<section  class="content">
@@ -73,18 +73,11 @@
 								</td>
 								<td><%=format.format(order.getModifiedTime())%></td>
 								<%
-									if (order.getState() == 0) {
-								%>
-								<td><a
-									href="/Kumart/applyCancellation?order_id=<%=order.getOrder_id()%>">Apply
-										Cancellation</a></td>
-								<%
-									}
-								%>
-								<%
 									if (order.getState() == 1) {
 								%>
-								<td>Cancellation Processing</td>
+								<td><a
+									href="/Kumart/approveCancellation?order_id=<%=order.getOrder_id()%>">Apply
+										Cancellation</a></td>
 								<%
 									}
 								%>

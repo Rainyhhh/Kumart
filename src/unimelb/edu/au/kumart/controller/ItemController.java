@@ -133,4 +133,25 @@ public class ItemController {
 		return null;
 	}
 	
+	@RequestMapping (value ="/index", method = RequestMethod.GET)
+	public ModelAndView getItemList(HttpServletRequest req){
+		String query = req.getParameter("query");
+		ModelAndView mav = new ModelAndView("/customer/index_cus");
+		if(query!=null&&!query.equals("")){		
+			List<Item> list = itemService.searchByName(query);
+		// double check if the list is not null
+		if(list!= null){
+			mav.addObject("items",list);
+			return mav;
+		}
+		}else{
+			List<Item> list = itemService.getItemList();	
+			if(list!=null){
+				mav.addObject("items",list);
+				return mav;
+			}
+		}
+		return null;
+	}
+	
 }

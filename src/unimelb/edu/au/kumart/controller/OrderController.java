@@ -51,7 +51,7 @@ public class OrderController {
 	 */
 	@RequestMapping("/admin_orders") 
 	public ModelAndView getWaitingOrders() {
-		ModelAndView mavAndView = new ModelAndView("/waitingOrders");
+		ModelAndView mavAndView = new ModelAndView("/handleOrder");
 		List<Order> list = orderDL.getWaitToCancelOrders();
 		mavAndView.addObject("orderList", list);
 		return mavAndView;
@@ -65,7 +65,8 @@ public class OrderController {
 	@RequestMapping(value = "/approveCancellation", method = RequestMethod.GET)
 	public ModelAndView approveCancellation(HttpServletRequest request) {
 		String order_id = request.getParameter("order_id");
-		orderDL.applyCancellation(order_id);
+		System.out.println(order_id);
+		orderDL.handleCancellation(order_id);
 		return new ModelAndView("redirect:admin_orders");
 	}
 	

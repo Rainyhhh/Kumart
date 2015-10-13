@@ -50,15 +50,16 @@ public class OrderMongo {
 	 * @return
 	 */
 	public List<Order> getOrderList(String type, String value) {
-		Query query = new Query(Criteria.where(type).is(value));
+		Query query = new Query();
 		if(type.equals("user")) {
+			query.addCriteria(Criteria.where(type).is(value));
 			query.with(new Sort(Direction.DESC, "modifiedTime"));
 		}
 		else if(type.equals("state")) {
+			query.addCriteria(Criteria.where(type).is(Integer.parseInt(value)));
 			query.with(new Sort(Direction.ASC, "modifiedTime"));
-		}
-		List<Order> list = new ArrayList<Order>();
-		list = mongoTemplate.find(query, Order.class, ORDER_COLLECTION);
+		}		
+		List<Order> list = mongoTemplate.find(query, Order.class, ORDER_COLLECTION);
 		return list;
 	}
 	
