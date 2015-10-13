@@ -76,7 +76,7 @@
 									if (order.getState() == 1) {
 								%>
 								<td><a
-									href="/Kumart/approveCancellation?order_id=<%=order.getOrder_id()%>">Approve
+									href="/Kumart/admin_approveCancellation?order_id=<%=order.getOrder_id()%>">Approve
 										Cancellation</a></td>
 								<%
 									}

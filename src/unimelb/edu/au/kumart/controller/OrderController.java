@@ -66,7 +66,7 @@ public class OrderController {
 	 * @param request
 	 * @return waiting orders page
 	 */
-	@RequestMapping(value = "/approveCancellation", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_approveCancellation", method = RequestMethod.GET)
 	public ModelAndView approveCancellation(HttpServletRequest request) {
 		String order_id = request.getParameter("order_id");
 		System.out.println(order_id);
