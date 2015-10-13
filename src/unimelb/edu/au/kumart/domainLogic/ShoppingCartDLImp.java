@@ -64,7 +64,6 @@ public class ShoppingCartDLImp implements ShoppingCartDL {
 					return;
 				}
 			}
-			System.out.println(customer.getRole());
 			shoppingCart.setUsername(username);
 			shoppingCart.setCreateTime(new Date());
 			shoppingCart.setModifiedTime(shoppingCart.getCreateTime());
