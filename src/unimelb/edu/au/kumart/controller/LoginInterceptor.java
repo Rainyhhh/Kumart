@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		String requestUri = arg0.getRequestURI();
 		for (String url : excludedUrls) {
 			//System.out.println(url);
-            if (requestUri.contains(url)) {
+            if (requestUri.contains(url) && !requestUri.contains("admin_index")) {
                 return true;
             }
         }

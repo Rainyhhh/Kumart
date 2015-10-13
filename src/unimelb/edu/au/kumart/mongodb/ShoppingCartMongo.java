@@ -1,5 +1,7 @@
 package unimelb.edu.au.kumart.mongodb;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -27,12 +29,17 @@ public class ShoppingCartMongo {
 	}
 	
 	public void deleteRecord(String username, String item_id){
-//		Criteria criteria = Criteria.where("email").is(username).and("shoppingCarts.$_id").is(item_id);
-//		Query query = new Query(criteria);
-//		Update update = new Update();
-//		update.unset("shoppingCarts.$");
-//		mongoTemplate.updateFirst(query, update, Customer.class, CUSTOMER_COLLECTION);
-		this.mongoTemplate.updateFirst(new Query(Criteria.where("email").is(username)),
-		        new Update().pull("shoppingCarts", Query.query(Criteria.where("shoppingCarts._id").is("item_id"))), CUSTOMER_COLLECTION);
+		Criteria criteria = Criteria.where("email").is(username);
+		Query query = new Query(criteria);
+		Customer customer = mongoTemplate.findOne(query, Customer.class, CUSTOMER_COLLECTION);
+		for(int i = 0; i < customer.getShoppingCarts().size(); i ++) {
+			if(customer.getShoppingCarts().get(i).getItem_id().equals(item_id)) {
+				customer.getShoppingCarts().remove(i);
+				customer.setModifiedTime(new Date());
+				mongoTemplate.save(customer, CUSTOMER_COLLECTION);
+				return;
+			}
+		}
+
 	}
 }
